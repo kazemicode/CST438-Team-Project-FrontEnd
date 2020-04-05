@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "zomato.apikey",
+    "type": "java.lang.String",
+    "description": "A description for 'zomato.apikey'"
+  },
+  {
+    "name": "zomato.url",
+    "type": "java.lang.String",
+    "description": "A description for 'zomato.url'"
+  }
+]}
