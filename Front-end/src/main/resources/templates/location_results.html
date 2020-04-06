@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Restaurant search results</title>
 </head>
 <body>
+
+	<h2>Top 20 Restaurants in your area</h2>
+	
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Cuisine</th>
+		</tr>
+		<tr th:each="restaurant : ${restaurants}">
+			<td th:text="${restaurant.id}"></td>
+			<td th:text="${restaurant.name}"></td>
+			<td th:text="${restaurant.address}"></td>
+			<td th:text="${restaurant.phoneNumber}"></td>
+			<td th:text="${restaurant.cuisine}"></td>
+		</tr>
+	</table>
 
 </body>
 </html>
