@@ -40,8 +40,6 @@ public class ZomatoService {
 		
 		String endpoint = zomatoUrl + "?lat=" + lat + "&lon=" + lon + "&sort=rating";
 		
-		// ResponseEntity<JsonNode> response = restTemplate.getForEntity(
-				// zomatoUrl + "?lat=" + lat + "&lon=" + lon + "&sort=rating&user-key=" + apiKey, JsonNode.class);
 		ResponseEntity<JsonNode> response = restTemplate.exchange(endpoint, HttpMethod.GET, entity, JsonNode.class);
 		JsonNode json = response.getBody();
 		log.info("Status code from zomato service: " + response.getStatusCodeValue());
@@ -49,10 +47,11 @@ public class ZomatoService {
 		JsonNode locations = json.get("restaurants");
 		locations.forEach(
 				location -> restaurants.add(new Restaurant(
-						location.get("name").asText(),
-						location.get("location").get("address").asText(),
-						location.get("phone_numbers").asText(),
-						location.get("cuisines").asText()
+						location.get("restaurant").get("id").asInt(),
+						location.get("restaurant").get("name").asText(),
+						location.get("restaurant").get("location").get("address").asText(),
+						location.get("restaurant").get("phone_numbers").asText(),
+						location.get("restaurant").get("cuisines").asText()
 						))
 				);
 		return restaurants;
