@@ -1,6 +1,32 @@
 package com.example.cst438Frontend;
 
+/* Helper class to provide details about each line item in an order to RabbitMQ */
+
 public class LineItem {
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
 	private double price;
 	private String name;
 	private int qty;
