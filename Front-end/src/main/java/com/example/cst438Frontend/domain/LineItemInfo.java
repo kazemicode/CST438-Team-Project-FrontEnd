@@ -1,8 +1,28 @@
-package com.example.cst438Frontend;
+package com.example.cst438Frontend.domain;
+
+import com.example.cst438Frontend.*;
+
 
 /* Helper class to provide details about each line item in an order to RabbitMQ */
 
-public class LineItem {
+public class LineItemInfo {
+	
+	private double price;
+	private String name;
+	private int qty;
+	
+	public LineItemInfo() {
+	
+		
+	}
+	
+	public LineItemInfo(MenuItem menuItem, OrderLineItem orderLineItem) {
+		this.name = menuItem.getName();
+		this.price = orderLineItem.getLine_item_amount();
+		this.qty = orderLineItem.getQty();;
+	}
+
+	
 	public double getPrice() {
 		return price;
 	}
@@ -25,22 +45,8 @@ public class LineItem {
 
 	public void setQty(int qty) {
 		this.qty = qty;
-	}
-
-	private double price;
-	private String name;
-	private int qty;
+	}	
 	
-	public LineItem() {
-		this(0, "name", 0);
-		
-	}
-	
-	public LineItem(double price, String name, int qty) {
-		this.price = price;
-		this.name = name;
-		this.qty = qty;
-	}
 	
 	@Override
 	public String toString() {

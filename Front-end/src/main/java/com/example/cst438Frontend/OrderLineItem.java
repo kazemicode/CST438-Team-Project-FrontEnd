@@ -1,6 +1,8 @@
 package com.example.cst438Frontend;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -13,7 +15,8 @@ import javax.persistence.Table;
 @IdClass(OrderLineItemId.class)
 public class OrderLineItem implements Serializable{
 	@Id
-	private long order_id;
+	@Column(name = "order_id")
+	private long orderId;
 	@Id
 	private int order_sequence;
 	private long dish_id;
@@ -25,17 +28,17 @@ public class OrderLineItem implements Serializable{
 	}
 	public OrderLineItem(long order_id, int order_sequence, long dish_id, int qty, double line_item_amount) {
 		super();
-		this.order_id = order_id;
+		this.orderId = order_id;
 		this.order_sequence = order_sequence;
 		this.dish_id = dish_id;
 		this.qty = qty;
 		this.line_item_amount = line_item_amount;
 	}
 	public long getOrder_id() {
-		return order_id;
+		return orderId;
 	}
 	public void setOrder_id(long order_id) {
-		this.order_id = order_id;
+		this.orderId = order_id;
 	}
 	public int getOrder_sequence() {
 		return order_sequence;
@@ -61,7 +64,6 @@ public class OrderLineItem implements Serializable{
 	public void setLine_item_amount(double line_item_amount) {
 		this.line_item_amount = line_item_amount;
 	}
-	
 	
 	
 	
