@@ -38,19 +38,18 @@ public class ZomatoService {
 		headers.set("user-key", apiKey);
 		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 		
-		String endpoint = zomatoUrl + "?lat=" + lat + "&lon=" + lon + "&sort=rating";
+		String endpoint = zomatoUrl + "?lat=" + lat + "&lon=" + lon;
 		
 		ResponseEntity<JsonNode> response = restTemplate.exchange(endpoint, HttpMethod.GET, entity, JsonNode.class);
 		JsonNode json = response.getBody();
 		log.info("Status code from zomato service: " + response.getStatusCodeValue());
 		List<Restaurant> restaurants = new ArrayList<Restaurant>();
-		JsonNode locations = json.get("restaurants");
+		JsonNode locations = json.get("nearby_restaurants");
 		locations.forEach(
 				location -> restaurants.add(new Restaurant(
 						location.get("restaurant").get("id").asInt(),
 						location.get("restaurant").get("name").asText(),
 						location.get("restaurant").get("location").get("address").asText(),
-						location.get("restaurant").get("phone_numbers").asText(),
 						location.get("restaurant").get("cuisines").asText()
 						))
 				);
