@@ -1,24 +1,16 @@
 package com.example.cst438Frontend.controller;
 
 
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
-
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import com.example.cst438Frontend.*;
 import com.example.cst438Frontend.domain.*;
 import com.example.cst438Frontend.service.OrderService;
@@ -43,10 +35,7 @@ public class OrderServiceTest {
 	
 	@Test
 public void orderFound() throws Exception {
-		int timeZone = -25200; // PDT Offset
-		int td = 1584479424; // time (ms)
-		OffsetDateTime time = OffsetDateTime.now(ZoneId.of("Etc/UTC")).plusSeconds(timeZone);
-		String strTime = time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+		Timestamp datetime = new Timestamp(new Date().getTime());
 		long id = 3799;
 		long cust_id = 4;
 		double order_total = 22.45;
@@ -55,7 +44,7 @@ public void orderFound() throws Exception {
 		String payment_type = "PayPal";
 		
 		/* Mocked objects: Order, List of Order Line Items, Customer*/
-		Order order = new Order(id, cust_id, strTime, order_total, tip, grand_total, payment_type);
+		Order order = new Order(id, cust_id, datetime, order_total, tip, grand_total, payment_type);
 		
 		// each line item consists of: long order_id, int order_sequence, long dish_id, int qty, double line_item_amount
 		List<OrderLineItem> orderLineItems = 

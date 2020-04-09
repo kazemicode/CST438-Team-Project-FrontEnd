@@ -1,5 +1,8 @@
 package com.example.cst438Frontend;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,16 +20,16 @@ public class Order {
 	@Column(name = "order_id")
 	private long id;
 	private long cust_id;
-	private String order_datetime;
+	private Timestamp order_datetime;
 	private double order_total;
 	private double tip;
 	private double grand_total;
 	private String payment_type;
 	
 	public Order() {
-		this(0, 0, "datetime", 0, 0, 0, "payment");
+		this(0, 0, new Timestamp(new Date().getTime()), 0, 0, 0, "payment");
 	}
-	public Order(long id, long cust_id, String order_datetime, double order_total, double tip, double grand_total,
+	public Order(long id, long cust_id, Timestamp order_datetime, double order_total, double tip, double grand_total,
 			String payment_type) {
 		super();
 		this.id = id;
@@ -49,10 +52,10 @@ public class Order {
 	public void setCust_id(long cust_id) {
 		this.cust_id = cust_id;
 	}
-	public String getOrder_datetime() {
+	public Timestamp getOrder_datetime() {
 		return order_datetime;
 	}
-	public void setOrder_datetime(String order_datetime) {
+	public void setOrder_datetime(Timestamp order_datetime) {
 		this.order_datetime = order_datetime;
 	}
 	public double getOrder_total() {

@@ -1,5 +1,6 @@
 package com.example.cst438Frontend.domain;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.cst438Frontend.*;
@@ -8,7 +9,7 @@ import com.example.cst438Frontend.*;
 public class OrderInfo {
 	
 	private long orderId;
-	private String datetime;
+	private Timestamp datetime;
 	private String custName; // Concatenated first/last from db
 	private String phone;
 	private String address; // concatenated address1, address2, city, state, zip from db
@@ -27,7 +28,7 @@ public class OrderInfo {
 		this.paymentType = order.getPayment_type();
 	}
 	
-	public OrderInfo(long orderId, String datetime, String custName, String phone, String address,
+	public OrderInfo(long orderId, Timestamp datetime, String custName, String phone, String address,
 			List<LineItemInfo> lineItems, double total, String paymentType) {
 		super();
 		this.orderId = orderId;
@@ -48,11 +49,11 @@ public class OrderInfo {
 		this.orderId = orderId;
 	}
 
-	public String getDatetime() {
+	public Timestamp getDatetime() {
 		return datetime;
 	}
 
-	public void setDatetime(String datetime) {
+	public void setDatetime(Timestamp datetime) {
 		this.datetime = datetime;
 	}
 
