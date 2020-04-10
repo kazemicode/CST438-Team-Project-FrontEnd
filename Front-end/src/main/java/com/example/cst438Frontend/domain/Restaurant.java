@@ -1,30 +1,18 @@
 package com.example.cst438Frontend.domain;
 
-import javax.persistence.Entity;
-
-@Entity
 public class Restaurant {
-
 	
-	private String name;
-	private String address;
-	private String phone;
-	private String latitude;
-	private String longitude;
+	public int id;
+	public String name;
+	public String address;
+	public String cuisine;
 	
-	// menu object?
-	
-	public Restaurant() {
+	public Restaurant(int id, String name, String address, String cuisine) {
 		
-	}
-	
-	public Restaurant(String name, String address, String phone, String latitude, String longitude) {
+		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.phone = phone;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.cuisine = cuisine;
 	}
-
-
+	
 }
