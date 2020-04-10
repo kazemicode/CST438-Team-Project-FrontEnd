@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
     <head>
         <title>Your Order</title>
         <link href="cart_styles.css" rel="stylesheet" type="text/css"/>
@@ -8,6 +8,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="ISO-8859-1">
+		<title>Your Order</title>
     </head>
 
     <body>
@@ -81,9 +83,9 @@
             </tr>
             <tr class="cart_buttons">
                 <td class="button_group">
-                  <button class="startOver">Start Over</button>
-                  <button class="updateTotal">Update Total</button>
-                  <button class="checkoutButton">Checkout</button>
+                  <button class="startOver" type="submit" th:value="true" th:name="startOver">Start Over</button>
+                  <button class="updateTotal" type="submit" th:value="true" th:name="updateTotal">Update Total</button>
+                  <button class="checkoutButton" type="submit" th:value="true" th:name="checkoutButton">Checkout</button>
                 </td>
             </tr>
          </tbody>
