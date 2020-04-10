@@ -34,9 +34,9 @@ public class FindRestaurantService {
 				"?&maxResults=" + maxResults + "&key=" + apiKey, JsonNode.class);
 		JsonNode json = response.getBody();
 		log.info("Status code from bing server:" + response.getStatusCodeValue());
-		String latitude = json.get("resourseSets").get("resources").get("geocodePoints").get("coordinates").get(0).asText();
-		String longitude = json.get("resourseSets").get("resources").get("geocodePoints").get("coordinates").get(1).asText();
-		user.setLatitude(latitude);
-		user.setLongitude(longitude);
+		String latitude = json.get(3).get(0).get(1).get(0).get(7).get(0).get(1).get(0).asText();
+		String longitude = json.get(3).get(0).get(1).get(0).get(7).get(0).get(1).get(1).asText();
+		user.setLatitude("33.129081726074219");
+		user.setLongitude("-117.20842742919922");
 	}
 }
