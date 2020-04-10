@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your Order</title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:600i,700i|Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+		  <div class='container text-center' id="page_title">
+        <header>
+          <h1>Food Flight</h1>
+        </header>
+      </div>
+
+      <div id="cart_header">
+        <header id="cart_header_text">
+          <h2>Your Meal Ticket</h2>
+          <br />
+        </header>
+      </div>
+      <main>
+      <div class='container text-center'>
+       <table id="cart">
+         <thead>
+           <tr>
+             <th class="cart_item">Item</th>
+             <th class="cart_price">Price</th>
+             <th class="cart_quantity">Quantity</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr class="fries">
+              <td>
+              </td>
+              <td>
+                  <div><p id="test_price1">$9.99 USD</p></div>
+                  
+              </td>
+              <td>
+                <div>
+                    <input class="quantity_input" id="" type="number" value="0" min="0" step="1">
+                    <button class="">Remove</button>
+                </div>
+              </td>
+           </tr>
+           <tr class="sushi">
+              <td>
+              </td>
+              <td>
+                  <div><p id="test_price2">$9.99 USD</p></div>
+              </td>
+              <td>
+                    <input class="quantity_input" id="" type="number" value="0" min="0" step="1">
+                    <button class="">Remove</button>
+              </td>
+           </tr>
+         </tbody>
+       </table>
+       
+       <br /> <br /> <br /> <br /> <br /> <br /> <br />
+       <div class='container text-center' id="totals_table_container">
+       <table class="totals">
+         <thead>
+         </thead>
+         <tbody>
+           <tr>
+             <div class='container text-center' id="order_message_container">
+                <td id="order_confirm_msg"></td>
+             </div>
+           </tr>
+            <tr class="totals_subtotal">
+              <td id="subtotal">subtotal: $</td>
+            </tr>
+            <tr class="tip">
+                <td id="tip">tip: $</td>
+            </tr>
+            <tr class="grand_total">
+                <td id="total"> grand total: $</td>
+            </tr>
+            <tr class="cart_buttons">
+                <td class="button_group">
+                  <button class="updateCart">Update Cart</button>
+                  <button class="checkoutButton">Checkout</button>
+                </td>
+            </tr>
+         </tbody>
+       </table>
+       <br />
+      </div>
+      <br />
+  </main>
+  <footer>
+  </footer>
+  </div>
+      <script src=""></script>
+</body>
+</html>
