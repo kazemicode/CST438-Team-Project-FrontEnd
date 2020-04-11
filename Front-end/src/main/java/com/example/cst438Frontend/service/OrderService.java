@@ -78,16 +78,13 @@ public class OrderService {
 	}
 
 	
-	
 	public void requestOrder(long orderId, String time, String customerName, String phoneNumber, String address, List<LineItemInfo> items, double total, String paymentType) {
 		String msg = "{\"Order Number\": \"" + orderId + "\" \"Time\": \"" + time + "\" \"Customer name\": \"" + customerName + "\" \"Phone\": \"" + phoneNumber + "\" \"address\": \"" + address + "\" \"Items\": \"" + items + "\" \"Total\": \\" + total + "\" \"Payment type\": \\" + "}";
 		System.out.println("Sending message:" + msg);
-		rabbitTemplate.convertSendAndReceive(fanout.getName(), "", // routing key none.
+		rabbitTemplate.convertSendAndReceive(fanout.getName(), "", // No routing key
 				msg);
 	}
 	
-
-
 }
 
 
