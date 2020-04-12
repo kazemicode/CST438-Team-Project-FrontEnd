@@ -18,20 +18,7 @@ function calcFinal(subCost) {
 
 // jQuery Handlers
 $(".checkoutButton").on("click", function(){
-    var timestamp = new Date($.now());
-    
-    if (finalCost > 0) {
-        $("#order_confirm_msg").html('Your order has been confirmed ' + '<br />' + timestamp + '');
-        $("#order_confirm_msg").show();
 
-        // Disable cart update and checkout buttons after order confirmation
-        $(".startOver").attr("disabled", true);
-        $(".checkoutButton").attr("disabled", true);
-    }
-    else {
-        $("#order_confirm_msg").html('Error: Empty cart');
-        $("#order_confirm_msg").show();
-    }
 });
 
 // If "Start Over" is clicked, goes back to the beginning
@@ -41,5 +28,5 @@ $(".startOver").on("click", function(){
 
 // Adds tip to grand total on click 
 $(".updateTotal").on("click", function(){
-	
+	calcFinal(subtotal);
 });
