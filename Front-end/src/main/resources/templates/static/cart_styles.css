@@ -90,6 +90,10 @@ p {
     font-size: 1.5em;
 }
 
+#orderConfirmMessage {
+	font-size: 1.5em;
+}
+
 #totals_table_container {
     position: fixed;
     display: flex;
