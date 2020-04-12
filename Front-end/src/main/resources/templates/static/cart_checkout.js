@@ -36,10 +36,10 @@ $(".checkoutButton").on("click", function(){
 
 // If "Start Over" is clicked, goes back to the beginning
 $(".startOver").on("click", function(){
-    // Calls function to start over
+    
 });
 
 // Adds tip to grand total on click 
 $(".updateTotal").on("click", function(){
-	// Calls function to add tip to total
+	
 });
