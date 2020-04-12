@@ -1,6 +1,6 @@
 // Variables
-var tip = 0.00;
-var subtotal = 0.00;
+var tip = document.getElementById("tip").value;
+var subtotal = document.getElementById("subtotal").value;
 var finalCost = 0.00;
 
 //To do: Calculate subtotal of all order line items
@@ -9,7 +9,7 @@ function calcSubTotal() {
 }
 
 //Returns final total - subtotal + tip
-function calcFinal(subCost) {
+function calcFinal() {
     finalCost = parseInt(finalCost);
     finalCost = parseFloat(tip + subtotal);
     finalCost = finalCost.toFixed(2);
@@ -28,5 +28,5 @@ $(".startOver").on("click", function(){
 
 // Adds tip to grand total on click 
 $(".updateTotal").on("click", function(){
-	calcFinal(subtotal);
+	calcFinal();
 });

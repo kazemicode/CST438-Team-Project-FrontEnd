@@ -33,17 +33,13 @@
            
          </tbody>
        </table>
-       
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
-       <div class='container text-center' id="totals_table_container">
+       <div class='container text-right' id="totals_table_container">
        <table class="totals">
          <thead>
          </thead>
          <tbody>
            <tr>
-             <div class='container text-center' id="order_message_container">
-                <td id="order_confirm_msg"></td>
-             </div>
            </tr>
             <tr class="totals_subtotal">
               <td id="subtotal">subtotal: $</td>
@@ -56,8 +52,8 @@
             </tr>
             <tr class="cart_buttons">
                 <td class="button_group">
-                  <button class="startOver" type="submit" th:value="true" th:name="startOver">Start Over</button>
-                  <button class="updateTotal" type="submit" th:value="true" th:name="updateTotal">Update Total</button>
+                  <button class="startOver" th:name="startOver">Start Over</button>
+                  <button class="updateTotal" th:name="updateTotal">Update Total</button>
                   <button class="checkoutButton" type="submit" th:value="true" th:name="checkoutButton">Checkout</button>
                 </td>
             </tr>
@@ -66,10 +62,10 @@
        <br />
       </div>
       <br />
+      </div>
   </main>
   <footer>
   </footer>
-  </div>
       <script src=""></script>
 </body>
 </html>
