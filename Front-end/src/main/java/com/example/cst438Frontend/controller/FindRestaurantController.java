@@ -38,7 +38,7 @@ public class FindRestaurantController {
 	public ResponseEntity<List<Restaurant>> getRestaurants(@Valid User user, BindingResult result,
 			Model model) {
 		findRestaurantService.getGeoCodes(user);
-		List<Restaurant> restaurants = zomatoService.GetRestaurantsInArea(33.129081726074219, -117.20842742919922);
+		List<Restaurant> restaurants = zomatoService.GetRestaurantsInArea(Double.parseDouble(user.getLatitude()), Double.parseDouble(user.getLongitude()));
 		return new ResponseEntity<List<Restaurant>>( restaurants, HttpStatus.OK);	
 	}	
 }
