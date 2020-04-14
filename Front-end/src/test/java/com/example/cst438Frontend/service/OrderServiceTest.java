@@ -1,4 +1,4 @@
-package com.example.cst438Frontend.controller;
+package com.example.cst438Frontend.service;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
