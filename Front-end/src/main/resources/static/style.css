@@ -75,3 +75,18 @@ input[type=submit]:hover {
 #results_form label, #result_row span {
 	padding-right: 32px;
 }
+
+#menu_item_row {
+	color: #f2f2f0;
+}
+#item_name {
+	font-weight: bold;
+	font-size: 24px;
+}
+#item_type {
+	font-style: italic;
+}
+#item_price {
+	font-weight: bold;
+	font-size: 24px;
+}
