@@ -68,8 +68,7 @@ public class OrderService {
 	public List<LineItemInfo> getLineItemInfo(List<OrderLineItem> lineItems){
 		List<LineItemInfo> lineItemInfo = new ArrayList<>();
 		for(OrderLineItem lineItem : lineItems) {
-			List<MenuItem> menuItems = menuRepository.findById(lineItem.getDish_id());
-			MenuItem menuItem = menuItems.get(0);
+			MenuItem menuItem = menuRepository.findById(lineItem.getDish_id());
 			lineItemInfo.add(new LineItemInfo(menuItem, lineItem));
 		}
 		
