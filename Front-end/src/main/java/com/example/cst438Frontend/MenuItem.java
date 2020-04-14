@@ -12,7 +12,8 @@ public class MenuItem {
 	@Id
 	@Column(name = "dish_id")
 	private long id;
-	private long rest_id;
+	@Column(name = "rest_id")
+	private long restId;
 	@Column(name = "dish_name")
 	private String name;
 	private String dish_type;
@@ -26,7 +27,7 @@ public class MenuItem {
 	public MenuItem(long id, long rest_id, String name, String dish_type, String dish_description, double price) {
 		super();
 		this.id = id;
-		this.rest_id = rest_id;
+		this.restId = rest_id;
 		this.name = name;
 		this.dish_type = dish_type;
 		this.dish_description = dish_description;
@@ -42,11 +43,11 @@ public class MenuItem {
 	}
 
 	public long getRest_id() {
-		return rest_id;
+		return restId;
 	}
 
 	public void setRest_id(long rest_id) {
-		this.rest_id = rest_id;
+		this.restId = rest_id;
 	}
 
 	public String getName() {
