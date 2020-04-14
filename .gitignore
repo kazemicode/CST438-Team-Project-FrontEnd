@@ -60,6 +60,3 @@ local.properties
 .classpath
 
 # End of https://www.gitignore.io/api/eclipse
-
-# Springboot application properties
-application.properties
