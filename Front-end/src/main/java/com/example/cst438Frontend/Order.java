@@ -2,7 +2,9 @@ package com.example.cst438Frontend;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,11 +43,15 @@ public class Order implements Serializable {
 	private String paymentType;
 	
 	
-	
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "cust_id", nullable = false)
 	@JsonBackReference
 	private Customer customer; // parent class
+	
+	@OneToMany(cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			mappedBy = "order")
+	private List<OrderLineItem> orderLineItems = new ArrayList<OrderLineItem>();
 	
 	public Order() {
 		this(new Timestamp(new Date().getTime()), 0, 0, 0, "payment");
@@ -117,8 +124,14 @@ public class Order implements Serializable {
 		this.customer = customer;
 	}
 	
-	
 
+	public List<OrderLineItem> getOrderLineItems() {
+		return orderLineItems;
+	}
+
+	public void setOrderLineItems(List<OrderLineItem> orderLineItems) {
+		this.orderLineItems = orderLineItems;
+	}
 
 	@Override
 	public int hashCode() {
