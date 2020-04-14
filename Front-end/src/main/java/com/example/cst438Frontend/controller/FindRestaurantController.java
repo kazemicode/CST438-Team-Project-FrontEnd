@@ -12,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.example.cst438Frontend.MenuItem;
 import com.example.cst438Frontend.domain.Restaurant;
 import com.example.cst438Frontend.domain.User;
 import com.example.cst438Frontend.service.FindRestaurantService;
+import com.example.cst438Frontend.service.MenuService;
 import com.example.cst438Frontend.service.ZomatoService;
 
 @Controller
@@ -27,7 +29,9 @@ public class FindRestaurantController {
 	
 	@Autowired
 	ZomatoService zomatoService;
-	
+
+	@Autowired
+	MenuService menuService;
 	
 	@GetMapping("/nearme")
 	public String findRestaurants() {
@@ -35,10 +39,23 @@ public class FindRestaurantController {
 	}
 	
 	@PostMapping("/findrestaurants") // 
-	public ResponseEntity<List<Restaurant>> getRestaurants(@Valid User user, BindingResult result,
+	public String getRestaurants(@Valid User user, BindingResult result,
 			Model model) {
 		findRestaurantService.getGeoCodes(user);
 		List<Restaurant> restaurants = zomatoService.GetRestaurantsInArea(Double.parseDouble(user.getLatitude()), Double.parseDouble(user.getLongitude()));
-		return new ResponseEntity<List<Restaurant>>( restaurants, HttpStatus.OK);	
-	}	
+		model.addAttribute("restaurants", restaurants);
+		return "restaurant_results";	
+	}
+	
+	@PostMapping("/order_form")
+	public String getMenu(
+			@RequestParam("id") String id,
+			Model model) {
+		// Do look up for menu and pass that to next View
+		List<MenuItem> menu = menuService.GetRestaurantMenu(Long.valueOf(id));
+		System.out.println(menu);
+		model.addAttribute("menu", menu);
+		
+		return "restaurant_menu";
+	}
 }
