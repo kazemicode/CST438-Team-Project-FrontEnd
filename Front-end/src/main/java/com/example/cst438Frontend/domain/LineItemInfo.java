@@ -18,7 +18,7 @@ public class LineItemInfo {
 	
 	public LineItemInfo(MenuItem menuItem, OrderLineItem orderLineItem) {
 		this.name = menuItem.getName();
-		this.price = orderLineItem.getLine_item_amount();
+		this.price = orderLineItem.getLineItemAmount();
 		this.qty = orderLineItem.getQty();;
 	}
 

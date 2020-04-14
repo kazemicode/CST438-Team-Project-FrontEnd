@@ -1,119 +1,178 @@
 package com.example.cst438Frontend;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer implements Serializable{
 	
 	@Id
 	@GeneratedValue
 	@Column(name = "cust_id")
 	private long id;
-	private String first_name;
-	private String last_name;
-	private String cust_address1;
-	private String cust_address2;
-	private String cust_city;
-	private String cust_state;
-	private String cust_zipcode;
-	private String cust_phone;
+	@Column(name = "first_name")
+	private String firstName;
+	@Column(name = "last_name")
+	private String lastName;
+	@Column(name = "cust_address1")
+	private String address1;
+	@Column(name = "cust_address2")
+	private String address2;
+	@Column(name = "cust_city")
+	private String city;
+	@Column(name = "cust_state")
+	private String state;
+	@Column(name = "cust_zip_code")
+	private String zipcode;
+	@Column(name = "cust_phone")
+	private String phone;
+	
+	@OneToOne(fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL,
+			mappedBy = "customer") 
+	@JsonManagedReference
+	private Order order;  // child class
 	
 	
 	public Customer() {
-		this(1, "first", "last", "address1", "address2", "city", "state", "00000", "000-000-0000");
+		this("first", "last", "address1", "address2", "city", "state", "00000", "000-000-0000");
 	}
 	
-	public Customer(long id, String first_name, String last_name, String cust_address1, String cust_address2,
-			String cust_city, String cust_state, String cust_zipcode, String cust_phone) {
+
+	public Customer(String firstName, String lastName, String address1, String address2, String city,
+			String state, String zipcode, String phone) {
 		super();
-		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.cust_address1 = cust_address1;
-		this.cust_address2 = cust_address2;
-		this.cust_city = cust_city;
-		this.cust_state = cust_state;
-		this.cust_zipcode = cust_zipcode;
-		this.cust_phone = cust_phone;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.phone = phone;
 	}
+
+
+
 
 	public long getId() {
 		return id;
 	}
 
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getCust_address1() {
-		return cust_address1;
+
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setCust_address1(String cust_address1) {
-		this.cust_address1 = cust_address1;
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
 
-	public String getCust_address2() {
-		return cust_address2;
+
+	public String getAddress2() {
+		return address2;
 	}
 
-	public void setCust_address2(String cust_address2) {
-		this.cust_address2 = cust_address2;
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
-	public String getCust_city() {
-		return cust_city;
+
+	public String getCity() {
+		return city;
 	}
 
-	public void setCust_city(String cust_city) {
-		this.cust_city = cust_city;
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public String getCust_state() {
-		return cust_state;
+
+	public String getState() {
+		return state;
 	}
 
-	public void setCust_state(String cust_state) {
-		this.cust_state = cust_state;
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getCust_zipcode() {
-		return cust_zipcode;
+
+	public String getZipcode() {
+		return zipcode;
 	}
 
-	public void setCust_zipcode(String cust_zipcode) {
-		this.cust_zipcode = cust_zipcode;
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
-	public String getCust_phone() {
-		return cust_phone;
+
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCust_phone(String cust_phone) {
-		this.cust_phone = cust_phone;
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
 	
+
+	public Order getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", address1=" + address1
+				+ ", address2=" + address2 + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + ", phone="
+				+ phone + "]";
+	}
 	
 	
 	
