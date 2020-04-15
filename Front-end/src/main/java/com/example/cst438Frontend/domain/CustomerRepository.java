@@ -1,10 +1,12 @@
 package com.example.cst438Frontend.domain;
-import java.util.List;
+
 
 import org.springframework.data.repository.CrudRepository;
-import com.example.cst438Frontend.Customer;
-import com.example.cst438Frontend.OrderLineItem;
+import org.springframework.stereotype.Repository;
 
+import com.example.cst438Frontend.Customer;
+
+@Repository
 public interface CustomerRepository extends CrudRepository <Customer, Long>{
 	Customer findById(long id);
 

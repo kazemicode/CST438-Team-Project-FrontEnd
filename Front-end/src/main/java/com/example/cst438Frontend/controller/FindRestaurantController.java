@@ -29,7 +29,7 @@ public class FindRestaurantController {
 	
 	@Autowired
 	ZomatoService zomatoService;
-	
+  
 	@Autowired
 	MenuService menuService;
 	
@@ -44,13 +44,8 @@ public class FindRestaurantController {
 		findRestaurantService.getGeoCodes(user);
 		List<Restaurant> restaurants = zomatoService.GetRestaurantsInArea(Double.parseDouble(user.getLatitude()), Double.parseDouble(user.getLongitude()));
 		model.addAttribute("restaurants", restaurants);
-		return "restaurant_results";		
-	}
-	
-	@GetMapping("/cart")
-	public String cart() {
-		return "cart_summary";
-	}
+		return "restaurant_results";	
+  }
 	
 	@PostMapping("/order_form")
 	public String getMenu(

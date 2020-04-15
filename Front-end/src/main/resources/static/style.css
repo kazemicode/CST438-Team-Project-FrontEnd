@@ -57,7 +57,7 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+.find_form input[type=submit] {
   width: 100%;  
   padding: 14px 20px;
   margin: 0px 0;
@@ -68,4 +68,56 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: #f2f2f0;
+}
+
+
+/* Results form put into table layout */
+#results_form {
+	display: table;
+	font-weight: bold;
+	color: #f2f2f0;
+	margin: auto;
+}
+#result_headers {
+	display: table-row;
+	font-size: 24px;
+}
+#results_form label{
+	display: table-cell;
+}
+#result_row {
+	display: table-row;
+}
+#result_row span {
+	display: table-cell;
+}
+#rest_name button[type=submit] {
+	background-color: #b65059;
+	text-align: left;
+	color: #f2f2f0;
+	border: none;
+	text-decoration: underline;
+	font-weight: bold;
+}
+#rest_name, #rest_address, #rest_cuisine {
+	display: table-cell;
+}
+
+#results_form label, #result_row span {
+	padding-right: 32px;
+}
+
+#menu_item_row {
+	color: #f2f2f0;
+}
+#item_name {
+	font-weight: bold;
+	font-size: 24px;
+}
+#item_type {
+	font-style: italic;
+}
+#item_price {
+	font-weight: bold;
+	font-size: 24px;
 }
