@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+    <head>
+        <title>Your Order</title>
+        <link href="cart_styles.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:600i,700i|Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="ISO-8859-1">
+		<title>Your Order</title>
+    </head>
+
+    <body>
+      <div id="cart_header">
+        <header id="cart_header_text">
+          <h2>Your Meal Ticket</h2>
+          <br />
+        </header>
+      </div>
+      <main>
+      <div class='container text-center'>
+       <table id="cart">
+         <thead>
+           <tr>
+             <th class="cart_item">Item</th>
+             <th class="cart_price">Price</th>
+             <th class="cart_quantity">Quantity</th>
+           </tr>
+         </thead>
+         <tbody>
+          	<tr th:each="lineItem: ${lineItems}">
+          		<td th:text = ${lineItem.getDish_id()}></td>
+          		<td th:text = ${lineItem.getLine_item_amount()}></td>
+          		<td th:text = ${lineItem.getQty()}></td>          	
+          	</tr>
+         </tbody>
+       </table>
+       <br /> <br /> <br /> <br /> <br /> <br /> <br />
+       <div class='container text-right' id="totals_table_container">
+       <table class="totals">
+         <thead>
+         </thead>
+         <tbody>
+           <tr>
+           </tr>
+            <tr class="totals_subtotal">
+              <td id="subtotal">subtotal: $</td>
+            </tr>
+            <tr class="tip">
+                <td id="tip">tip: $<input class="tip_input" id="" type="number" value="0" min="0" step="0.01"></td>
+            </tr>
+            <tr class="grand_total">
+                <td id="total"> grand total: $</td>
+            </tr>
+            <tr class="cart_buttons">
+                <td class="button_group">
+                  <button class="startOver" th:name="startOver">Start Over</button>
+                  <button class="updateTotal" th:name="updateTotal" oninput="calcFinal()">Update Total</button>
+                  <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
+                </td>
+            </tr>
+         </tbody>
+       </table>
+       <br />
+      </div>
+      <br />
+      </div>
+  </main>
+  <footer>
+  </footer>
+      <script src=""></script>
+</body>
+</html>
