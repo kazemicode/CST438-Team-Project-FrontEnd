@@ -137,7 +137,4 @@ public class MenuItem {
 		return "MenuItem [id=" + id + ", restId=" + restId + ", name=" + name + ", dishType=" + dishType
 				+ ", dishDescription=" + dishDescription + ", price=" + price + "]";
 	}
-
-	
-
 }

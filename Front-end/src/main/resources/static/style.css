@@ -179,6 +179,9 @@ p {
     color: white;
 }
 
+.tip {
+	font-color: black !important;
+}
 #orderConfirmMessage {
 	font-size: 1.5em;
 	color: white;
