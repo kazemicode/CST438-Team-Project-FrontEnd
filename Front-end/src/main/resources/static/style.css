@@ -22,12 +22,24 @@ body {
   	grid-template-rows: 100px 1000px auto;
 }
 
+.grid-repeat {
+	display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;	
+}
+
 .header-grid {
 	grid-column-start: 3;
 	grid-column-end: 4;
 	grid-row-start: auto;
 	grid-row-end: auto;
 	border-style: solid;
+}
+
+.grid-repeat > div {
+  background: #EDE7F6;
+  padding: 1.5rem;
+  border-radius: 1rem;
 }
 
 .item-left {
