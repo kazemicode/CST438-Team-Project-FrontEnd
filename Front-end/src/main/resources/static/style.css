@@ -16,6 +16,49 @@ body {
 	
 }
 
+.container-grid {
+	display: grid;
+  	grid-template-columns: 40px 50px auto 50px 40px;
+  	grid-template-rows: 100px 1000px auto;
+}
+
+.grid-repeat {
+	display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;	
+}
+
+.header-grid {
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: auto;
+	grid-row-end: auto;
+	border-style: solid;
+}
+
+.grid-repeat > div {
+  background: #EDE7F6;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.item-left {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 4;
+	border-style: solid;
+}
+
+.item-right {
+	grid-column-start: 4;
+	grid-column-end: 6;
+	grid-row-start: 1;
+	grid-row-end: 4;
+	border-style: solid;
+}
+
+
 input[type=text] {
   width: 100%;
   padding: 10px 20px;
@@ -26,7 +69,7 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+.find_form input[type=submit] {
   width: 100%;  
   padding: 14px 20px;
   margin: 0px 0;
@@ -145,4 +188,54 @@ p {
     position: fixed;
     display: flex;
     justify-content: flex-end;
+
+/* Results form put into table layout */
+#results_form {
+	display: table;
+	font-weight: bold;
+	color: #f2f2f0;
+	margin: auto;
+}
+#result_headers {
+	display: table-row;
+	font-size: 24px;
+}
+#results_form label{
+	display: table-cell;
+}
+#result_row {
+	display: table-row;
+}
+#result_row span {
+	display: table-cell;
+}
+#rest_name button[type=submit] {
+	background-color: #b65059;
+	text-align: left;
+	color: #f2f2f0;
+	border: none;
+	text-decoration: underline;
+	font-weight: bold;
+}
+#rest_name, #rest_address, #rest_cuisine {
+	display: table-cell;
+}
+
+#results_form label, #result_row span {
+	padding-right: 32px;
+}
+
+#menu_item_row {
+	color: #f2f2f0;
+}
+#item_name {
+	font-weight: bold;
+	font-size: 24px;
+}
+#item_type {
+	font-style: italic;
+}
+#item_price {
+	font-weight: bold;
+	font-size: 24px;
 }
