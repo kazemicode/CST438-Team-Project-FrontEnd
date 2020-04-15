@@ -4,6 +4,7 @@ package com.example.cst438Frontend.domain;
 public class User {
 
 	private String address;
+	private String address_2;
 	private String city;
 	private String state;
 	private String zip_code;
@@ -14,8 +15,9 @@ public class User {
 		
 	}
 	
-	public User(String address, String city, String state, String zip_code) {
+	public User(String address, String address_2, String city, String state, String zip_code) {
 		this.address = address;
+		this.setAddress_2(address_2);
 		this.city = city;
 		this.state = state;
 		this.zip_code = zip_code;
@@ -78,6 +80,14 @@ public class User {
 
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getAddress_2() {
+		return address_2;
+	}
+
+	public void setAddress_2(String address_2) {
+		this.address_2 = address_2;
 	}
 	
 }
