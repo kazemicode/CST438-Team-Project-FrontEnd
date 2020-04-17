@@ -20,7 +20,7 @@
 			<label for="rest_address">Address</label>
 			<label for="rest_cuisine">Cuisine</label>
 		</span><br>
-		<span id="result_row" th:each="restaurant : ${restaurants}">
+		<span id="result_row" th:each="restaurant : ${restaurants}">			
 			<span id="rest_name"><button type="submit" th:name="id" th:value="${restaurant.id}" th:text="${restaurant.name}"></button></span>
 			<span id="rest_address" th:text="${restaurant.address}"></span>
 			<span id="rest_cuisine" th:text="${restaurant.cuisine}"></span><br><br>

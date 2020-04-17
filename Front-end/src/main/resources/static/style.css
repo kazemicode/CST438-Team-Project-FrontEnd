@@ -1,0 +1,246 @@
+
+@charset "ISO-8859-1";
+.find_form {	
+	background-color: #b65059;
+	width:500px;
+	height: 400px;
+	border-radius: 30px;	
+	padding: 0px 20px;
+	margin:auto;
+	margin-top: 10px;
+	font-size: 24px;
+	
+}
+
+body {
+	background: #b65059 !important;
+	
+}
+
+.container-grid {
+	display: grid;
+  	grid-template-columns: 40px 50px auto 50px 40px;
+  	grid-template-rows: 100px 1000px auto;
+}
+
+.grid-repeat {
+	display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;	
+}
+
+.header-grid {
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: auto;
+	grid-row-end: auto;
+	border-style: solid;
+}
+
+.grid-repeat > div {
+  background: #EDE7F6;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.item-left {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 4;
+	border-style: solid;
+}
+
+.item-right {
+	grid-column-start: 4;
+	grid-column-end: 6;
+	grid-row-start: 1;
+	grid-row-end: 4;
+	border-style: solid;
+}
+
+
+input[type=text] {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 0px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.find_form input[type=submit] {
+  width: 100%;  
+  padding: 14px 20px;
+  margin: 0px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #f2f2f0;
+}
+
+h1 {
+    background-color: #d2f0fa;
+    color: pink !important;
+    font-family: 'Archivo Narrow', sans-serif !important;
+    font-size: 6em !important;
+    margin-bottom: 0px !important;
+    color: white !important;
+}
+
+h4 {
+    font-family: 'Courier New', Courier, monospace !important;
+    background-color: #b65059;
+    color: white !important;
+}
+
+h2 {
+    font-family: 'Archivo Narrow', sans-serif !important;
+    font-size: 4em !important;
+    background-color: #b65059;
+    color: white !important;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 13px;
+    color: white;
+}
+
+#cart thead th {
+    font-family: 'Courier New', 'Courier New', Courier, monospace !important;
+    font-size: 16px; 
+    font-weight: bold;
+    text-align: center !important;
+    color: white !important;
+}
+
+#cart thead th.cart_item {
+     width: 100px;
+}
+
+#cart thead th.cart_price { 
+    width: 100px;
+}
+
+#cart thead th.cart_quantity {
+    width: 100px;
+}
+
+#cart_header_text {
+    text-align: center;
+}
+
+.checkoutButton {
+    height: 50px;
+    width: 200px;
+    background: red;
+    border: none;
+    color: white;
+    font-family: 'Archivo Narrow', sans-serif !important;
+    font-size: 24px;
+}
+
+.startOver {
+    height: 50px;
+    width: 200px;
+    background: black;
+    border: none;
+    color: white;
+    font-family: 'Archivo Narrow', sans-serif !important;
+    font-size: 24px;
+}
+
+.updateTotal {
+    height: 50px;
+    width: 200px;
+    background: black;
+    border: none;
+    color: white;
+    font-family: 'Archivo Narrow', sans-serif !important;
+    font-size: 24px;
+}
+
+.totals {
+    position: fixed;
+    margin-right: 40px;
+    text-align: left;
+    font-family: 'Courier New', 'Courier New', 'Courier New', Courier, monospace !important;
+    font-size: 18px;
+    color: white;
+}
+
+.final_total {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+}
+
+.tip {
+	font-color: black !important;
+}
+#orderConfirmMessage {
+	font-size: 1.5em;
+	color: white;
+}
+
+#totals_table_container {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Results form put into table layout */
+#results_form {
+	display: table;
+	font-weight: bold;
+	color: #f2f2f0;
+	margin: auto;
+}
+#result_headers {
+	display: table-row;
+	font-size: 24px;
+}
+#results_form label{
+	display: table-cell;
+}
+#result_row {
+	display: table-row;
+}
+#result_row span {
+	display: table-cell;
+}
+#rest_name button[type=submit] {
+	background-color: #b65059;
+	text-align: left;
+	color: #f2f2f0;
+	border: none;
+	text-decoration: underline;
+	font-weight: bold;
+}
+#rest_name, #rest_address, #rest_cuisine {
+	display: table-cell;
+}
+
+#results_form label, #result_row span {
+	padding-right: 32px;
+}
+
+#menu_item_row {
+	color: #f2f2f0;
+}
+#item_name {
+	font-weight: bold;
+	font-size: 24px;
+}
+#item_type {
+	font-style: italic;
+}
+#item_price {
+	font-weight: bold;
+	font-size: 24px;
+}
