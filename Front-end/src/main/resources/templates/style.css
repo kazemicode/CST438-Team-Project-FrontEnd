@@ -188,12 +188,22 @@ p {
 	width: 200px;
 }
 
+
+
 input[type=number]{
 	color: black;
 }
 
-#totals_table_container {
-    position: fixed;
+.totals_table_container {
+	width: 730px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.customer_info_container {
+	width: 730px;
+    position: relative;
     display: flex;
     justify-content: flex-end;
 }

@@ -38,12 +38,23 @@
          </tbody>
        </table>
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
-       <div class='container text-right' class ="totals_table_container">
+       
+       <div class ="totals_table_container">
        <form action="#" th:action="@{/order/submit}" th:object="${user}" method="post">
        <table class="totals">
          <tbody>
-           <tr>
-           </tr>
+         <tr class="customer_firstname">
+              <td>first name:</td>
+              <td><input class="firstname_field" type="text"></td>
+            </tr>
+            <tr class="customer_lastname">
+              <td>last name:</td>
+              <td><input class="lastname_field" type="text"></td>
+            </tr>
+         	<tr class="customer_phone">
+              <td>phone number:</td>
+              <td><input class="phone_field" type="text"></td>
+            </tr>
             <tr class="subtotal">
               <td>subtotal:</td>
               <td><input class="subtotal_field" type="number" value="0.00" min="0" step="0.01"></td>
