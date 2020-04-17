@@ -164,27 +164,32 @@ p {
 }
 
 .totals {
-    position: fixed;
     margin-right: 40px;
     text-align: left;
     font-family: 'Courier New', 'Courier New', 'Courier New', Courier, monospace !important;
     font-size: 18px;
     color: white;
+    border-collapse: separate;
+    border-spacing: 10px;
 }
 
-.final_total {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: white;
+.subtotal_field {
+	margin-left: 55px !important;
+	width: 200px;
 }
 
-.tip_input{
+.tip_field{
+	margin-left: 55px !important;
+	width: 200px;
+}
+
+.grand_total_field{
+	margin-left: 55px !important;
+	width: 200px;
+}
+
+input[type=number]{
 	color: black;
-}
-
-#orderConfirmMessage {
-	font-size: 1.5em;
-	color: white;
 }
 
 #totals_table_container {
