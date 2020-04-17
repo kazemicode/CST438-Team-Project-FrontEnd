@@ -191,6 +191,7 @@ p {
     position: fixed;
     display: flex;
     justify-content: flex-end;
+}
 
 /* Results form put into table layout */
 #results_form {
