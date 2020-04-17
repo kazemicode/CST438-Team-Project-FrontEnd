@@ -13,7 +13,6 @@
 
 body {
 	background: #b65059 !important;
-	
 }
 
 .container-grid {
@@ -192,6 +191,7 @@ p {
     position: fixed;
     display: flex;
     justify-content: flex-end;
+}
 
 /* Results form put into table layout */
 #results_form {
