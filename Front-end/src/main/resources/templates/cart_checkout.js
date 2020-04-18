@@ -1,22 +1,19 @@
 // Variables
-var tip = document.getElementById("tip").value;
-var subtotal = document.getElementById("subtotal").value;
-var finalCost = 0.00;
+var subtotal = document.getElementById("sf_field").value;
+var tip = document.getElementById("t_field").value;
+var grand_total = document.getElementById("gt_field").value;
 
-//To do: Calculate subtotal of all order line items
-function calcSubTotal() {
-    document.getElementById("subtotal").innerHTML = "subtotal: $" + subtotal;
-}
 
-//Returns final total - subtotal + tip
+//Returns final total: subtotal + tip
 function calcFinal() {
-    finalCost = parseInt(finalCost);
-    finalCost = parseFloat(tip + subtotal);
-    finalCost = finalCost.toFixed(2);
-    document.getElementById("total").innerHTML = "total: $" + finalCost;
+    grand_total = parseInt(grand_total);
+    grand_total = parseFloat(tip + subtotal);
+    grand_total = grand_total.toFixed(2);
+    document.getElementById("total").innerHTML = "total: $" + grand_total;
 }
 
 // jQuery Handlers
+// Submits order (if necessary)
 $(".checkoutButton").on("click", function(){
 
 });
@@ -26,7 +23,7 @@ $(".startOver").on("click", function(){
     
 });
 
-// Adds tip to grand total on click 
+// Adds tip to grand total and updates grand total
 $(".updateTotal").on("click", function(){
 	calcFinal();
 });

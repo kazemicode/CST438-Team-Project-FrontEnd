@@ -2,7 +2,7 @@
 <html xmlns:th="www.thymeleaf.org">
     <head>
         <title>Your Order</title>
-        <link href="cart_styles.css" rel="stylesheet" type="text/css"/>
+        <link href="style.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:600i,700i|Roboto+Mono&display=swap" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -38,22 +38,38 @@
          </tbody>
        </table>
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
-       <div class='container text-right' id="totals_table_container">
+       
+       <div class ="totals_table_container">
+       <form id=“results_form” action=“#” th:action=“@{/order_form(sessionId=${sessionId})}” th:method=“post”>
        <table class="totals">
-         <thead>
-         </thead>
          <tbody>
-           <tr>
-           </tr>
-            <tr class="totals_subtotal">
-              <td id="subtotal">subtotal: $</td>
+         <tr class="customer_firstname">
+              <td>first name:</td>
+              <td><input class="firstname_field" type="text"></td>
+            </tr>
+            <tr class="customer_lastname">
+              <td>last name:</td>
+              <td><input class="lastname_field" type="text"></td>
+            </tr>
+         	<tr class="customer_phone">
+              <td>phone number:</td>
+              <td><input class="phone_field" type="text"></td>
+            </tr>
+            <tr class="subtotal">
+              <td>subtotal:</td>
+              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.getOrder_total()" min="0" step="0.01"></td>
             </tr>
             <tr class="tip">
-                <td id="tip">tip: $<input class="tip_input" id="" type="number" value="0" min="0" step="0.01"></td>
+                <td>tip:</td>
+                <td><input class="tip_field" id="t_field" type="number" th:value="order.getTip()" min="0" step="0.01"></td>
             </tr>
             <tr class="grand_total">
-                <td id="total"> grand total: $</td>
+                <td> grand total:</td>
+                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.getGrand_total()" min="0" step="0.01"></td>
             </tr>
+            </tbody>
+       </table>
+       <table>
             <tr class="cart_buttons">
                 <td class="button_group">
                   <button class="startOver" th:name="startOver">Start Over</button>
@@ -61,8 +77,8 @@
                   <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
                 </td>
             </tr>
-         </tbody>
        </table>
+       </form>
        <br />
       </div>
       <br />
@@ -70,6 +86,6 @@
   </main>
   <footer>
   </footer>
-      <script src=""></script>
+      <script src="cart_checkout.js"></script>
 </body>
 </html>
