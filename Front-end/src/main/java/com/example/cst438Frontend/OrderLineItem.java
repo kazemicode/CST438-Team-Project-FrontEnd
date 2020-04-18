@@ -2,69 +2,109 @@ package com.example.cst438Frontend;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /* For accessing and saving to the order_line_items table in the foodflight schema */
 /* To read: https://www.baeldung.com/jpa-mapping-single-entity-to-multiple-tables */
 @Entity
 @Table(name = "order_line_items")
-@IdClass(OrderLineItemId.class)
 public class OrderLineItem implements Serializable{
 	@Id
-	@Column(name = "order_id")
-	private long orderId;
-	@Id
-	private int order_sequence;
-	private long dish_id;
+	@Column(name = "order_sequence")
+	private int orderSequence;
+	@Column(name = "dish_id")
+	private long dishId;
 	private int qty;
-	private double line_item_amount;
+	@Column(name = "line_item_amount")
+	private double lineItemAmount;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "order_id", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private Order order;
+
 	
 	public OrderLineItem() {
-		this(0, 0, 0, 0, 0);
+		this(0, 0, 0, 0);
 	}
-	public OrderLineItem(long order_id, int order_sequence, long dish_id, int qty, double line_item_amount) {
+
+
+	public OrderLineItem(int orderSequence, long dishId, int qty, double lineItemAmount) {
 		super();
-		this.orderId = order_id;
-		this.order_sequence = order_sequence;
-		this.dish_id = dish_id;
+		this.orderSequence = orderSequence;
+		this.dishId = dishId;
 		this.qty = qty;
-		this.line_item_amount = line_item_amount;
+		this.lineItemAmount = lineItemAmount;
 	}
-	public long getOrder_id() {
-		return orderId;
+
+
+	public int getOrderSequence() {
+		return orderSequence;
 	}
-	public void setOrder_id(long order_id) {
-		this.orderId = order_id;
+
+
+	public void setOrderSequence(int orderSequence) {
+		this.orderSequence = orderSequence;
 	}
-	public int getOrder_sequence() {
-		return order_sequence;
+
+
+	public long getDishId() {
+		return dishId;
 	}
-	public void setOrder_sequence(int order_sequence) {
-		this.order_sequence = order_sequence;
+
+
+	public void setDishId(long dishId) {
+		this.dishId = dishId;
 	}
-	public long getDish_id() {
-		return dish_id;
-	}
-	public void setDish_id(long dish_id) {
-		this.dish_id = dish_id;
-	}
+
+
 	public int getQty() {
 		return qty;
 	}
+
+
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
-	public double getLine_item_amount() {
-		return line_item_amount;
+
+
+	public double getLineItemAmount() {
+		return lineItemAmount;
 	}
-	public void setLine_item_amount(double line_item_amount) {
-		this.line_item_amount = line_item_amount;
+
+
+	public void setLineItemAmount(double lineItemAmount) {
+		this.lineItemAmount = lineItemAmount;
+	}
+
+
+	public Order getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+
+	@Override
+	public String toString() {
+		return "OrderLineItem [orderSequence=" + orderSequence + ", dishId=" + dishId + ", qty=" + qty
+				+ ", lineItemAmount=" + lineItemAmount + "]";
 	}
 	
-	
+
 	
 }

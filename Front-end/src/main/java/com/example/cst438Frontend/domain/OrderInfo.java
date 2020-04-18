@@ -19,13 +19,13 @@ public class OrderInfo {
 	
 	public OrderInfo(Order order, Customer customer, List<LineItemInfo> lineItems) {
 		this.orderId = order.getId();
-		this.datetime = order.getOrder_datetime();
-		this.custName = customer.getFirst_name() + " " + customer.getLast_name();
-		this.phone = customer.getCust_phone();
-		this.address = customer.getCust_address1() + " " + customer.getCust_address2() + " " + customer.getCust_city() + " " + customer.getCust_state() + " " + customer.getCust_zipcode();
+		this.datetime = order.getOrderDatetime();
+		this.custName = customer.getFirstName() + " " + customer.getLastName();
+		this.phone = customer.getPhone();
+		this.address = customer.getAddress1() + " " + customer.getAddress2() + " " + customer.getCity() + " " + customer.getState() + " " + customer.getZipcode();
 		this.lineItems = lineItems;
-		this.total = order.getGrand_total();
-		this.paymentType = order.getPayment_type();
+		this.total = order.getGrandTotal();
+		this.paymentType = order.getPaymentType();
 	}
 	
 	public OrderInfo(long orderId, Timestamp datetime, String custName, String phone, String address,
