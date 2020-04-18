@@ -45,7 +45,7 @@ public class FindRestaurantController {
 		List<Restaurant> restaurants = zomatoService.GetRestaurantsInArea(Double.parseDouble(user.getLatitude()), Double.parseDouble(user.getLongitude()));
 		model.addAttribute("restaurants", restaurants);
 		return "restaurant_results";	
-  }
+	}
 	
 	@PostMapping("/order_form")
 	public String getMenu(

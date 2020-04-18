@@ -14,12 +14,17 @@
 	<div class="header">
 		<img src="/images/FoodFlightMock0.png">
 	</div>
-	<span id="menu_item_row" th:each="menu_item : ${menu}">
-		<span id="item_name" th:text="${menu_item.name}"></span>
-		<span id="item_type" th:text="${menu_item.dishType}"></span><br>
-		<span id="item_description" th:text="${menu_item.dishDescription}"></span>
-		<span id="item_price" th:text="${menu_item.price}"></span><br><br>
-	</span>
+	<form action="/order/summary" method="post">
+		<span id="menu_item_row" th:each="menu_item : ${menu}">
+			<input type="number" id="qty" name="itemqty" value="0" min="0">
+			<span id="item_name" th:text="${menu_item.name}"></span>
+			<span id="item_type" th:text="${menu_item.dishType}"></span><br>
+			<span id="item_description" th:text="${menu_item.dishDescription}"></span>
+			<span id="item_price" th:text="${menu_item.price}"></span><br><br>
+		</span>
+		<input type="submit">
+	</form>
+	
 </div>
 </body>
 </html>

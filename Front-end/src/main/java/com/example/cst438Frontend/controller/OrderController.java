@@ -19,6 +19,17 @@ public class OrderController {
 	 * Add order to table and display success page. In case of validation errors, return form. 
 	 */
 	
+	/* Passing in dishId, Qty, price, subtotal,  */
+	@PostMapping("/order/summary")
+	public String orderSummary(@Valid Order order, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			System.out.println(result);
+			return "order_summary";
+		}
+		//orderRepository.save(order);
+		return "checkout";
+	}
+	
 	/* To read for saving multiple line items entities: https://www.baeldung.com/spring-data-jpa-batch-inserts */
 	@PostMapping("/order/submit")
 	public String processOrderForm(@Valid Order order, BindingResult result, Model model) {
