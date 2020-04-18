@@ -44,13 +44,13 @@ public void orderFound() throws Exception {
 		String payment_type = "PayPal";
 		
 		/* Mocked objects: Order, List of Order Line Items, Customer*/
-		Order order = new Order(id, cust_id, datetime, order_total, tip, grand_total, payment_type);
+		Order order = new Order(datetime, order_total, tip, grand_total, payment_type);
 		
 		// each line item consists of: long order_id, int order_sequence, long dish_id, int qty, double line_item_amount
 		List<OrderLineItem> orderLineItems = 
                 Arrays.asList(
-                		new OrderLineItem(id, 1, 52, 1, 2.99),
-                		new OrderLineItem(id, 2, 2, 2, 13.99));
+                		new OrderLineItem(1, 52, 1, 2.99),
+                		new OrderLineItem(2, 2, 2, 13.99));
 		
 		// Transform to line item info objects
 		MenuItem m1 = new MenuItem(1, 1, "Wontons", "Appetizers", "Delicious", 2.99);
@@ -60,7 +60,7 @@ public void orderFound() throws Exception {
 	                		new LineItemInfo(m1, orderLineItems.get(0)),
 	                		new LineItemInfo(m2, orderLineItems.get(1)));
 
-		Customer customer = new Customer(cust_id, "David", "Wisneski", "100 Campus Center", "", "Seaside", "CA", "93955", "831-582-4580");
+		Customer customer = new Customer("David", "Wisneski", "100 Campus Center", "", "Seaside", "CA", "93955", "831-582-4580");
 
 		OrderInfo expected = new OrderInfo(order, customer, lineItemInfo);
 		

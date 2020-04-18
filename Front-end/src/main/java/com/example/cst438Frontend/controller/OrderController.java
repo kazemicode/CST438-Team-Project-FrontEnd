@@ -7,13 +7,25 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.example.cst438Frontend.Order;
+import com.example.cst438Frontend.domain.CustomerRepository;
+import com.example.cst438Frontend.domain.OrderLineItemRepository;
 import com.example.cst438Frontend.domain.OrderRepository;
+import com.example.cst438Frontend.service.OrderService;
 
 @Controller
 public class OrderController {
 	/* Access to the orderRepository interface */
 	@Autowired
 	OrderRepository orderRepository;
+	
+	@Autowired
+	CustomerRepository customerRepository;
+	
+	@Autowired
+	OrderLineItemRepository orderLineItemRepository;
+	
+	@Autowired 
+	OrderService orderService;
 
 	/*
 	 * Add order to table and display success page. In case of validation errors, return form. 

@@ -56,7 +56,7 @@ public class OrderService {
 		
 		
 		// Get customer by id
-		Customer customer = customerRepository.findById(order.getCust_id());
+		Customer customer = customerRepository.findById(order.getCustomer().getId());
 		if (customer.equals(null)) {
 			return null;
 		}
@@ -68,7 +68,7 @@ public class OrderService {
 	public List<LineItemInfo> getLineItemInfo(List<OrderLineItem> lineItems){
 		List<LineItemInfo> lineItemInfo = new ArrayList<>();
 		for(OrderLineItem lineItem : lineItems) {
-			MenuItem menuItem = menuRepository.findById(lineItem.getDish_id());
+			MenuItem menuItem = menuRepository.findById(lineItem.getDishId());
 			lineItemInfo.add(new LineItemInfo(menuItem, lineItem));
 		}
 		
