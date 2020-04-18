@@ -140,9 +140,7 @@ public class OrderController {
 		session.setGrandtotal(grandtotal);
 		String paymentType = "Paypal";
 	
-		
 		sessionRepository.save(session);
-		
 		
 		
 		Customer customer = new Customer(
