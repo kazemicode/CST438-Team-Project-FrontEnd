@@ -40,7 +40,7 @@
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
        
        <div class ="totals_table_container">
-       <form action="#" th:action="@{/order/submit}" th:object="${user}" method="post">
+       <form id=“results_form” action=“#” th:action=“@{/order_form(sessionId=${sessionId})}” th:method=“post”>
        <table class="totals">
          <tbody>
          <tr class="customer_firstname">
