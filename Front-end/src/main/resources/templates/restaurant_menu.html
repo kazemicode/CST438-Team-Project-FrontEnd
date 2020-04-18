@@ -22,6 +22,7 @@
 			<span id="item_description" th:text="${menu_item.dishDescription}"></span>
 			<span id="item_price" th:text="${menu_item.price}"></span><br><br>
 		</span>
+		<input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
 		<input type="submit">
 	</form>
 	
