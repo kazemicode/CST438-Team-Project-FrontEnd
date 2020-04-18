@@ -215,6 +215,7 @@ input[type=number]{
 	color: #f2f2f0;
 	margin: auto;
 }
+
 #result_headers {
 	display: table-row;
 	font-size: 24px;
