@@ -96,13 +96,7 @@ public class OrderController {
 		System.out.println(menu);
 		model.addAttribute("menu", menu);
 		model.addAttribute("sessionId", sessionId);
-		
-		// Create list of OrderLineItems
-		// If MenuItem quantity >=1, create OrderLineItem and add to list
-		// Parse form, create JSON formatted string from OrderLineItems, and submit to next view
-		// (order/summary)
-		List<OrderLineItem> lineItems = new ArrayList<>();
-		
+	
 		return "restaurant_menu";
 	}
 	

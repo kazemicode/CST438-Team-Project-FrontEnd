@@ -31,8 +31,8 @@
          </thead>
          <tbody>
           	<tr th:each="lineItem: ${lineItems}">
-          		<td th:text = ${lineItem.getDish_id()}></td>
-          		<td th:text = ${lineItem.getLine_item_amount()}></td>
+          		<td th:text = ${lineItem.getDishId()}></td>
+          		<td th:text = ${lineItem.getLineItemAmount()}></td>
           		<td th:text = ${lineItem.getQty()}></td>          	
           	</tr>
          </tbody>
