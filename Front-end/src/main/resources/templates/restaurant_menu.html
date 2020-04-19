@@ -2,7 +2,7 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
-	<link rel="stylesheet" href="style.css">
+	<link href="style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -14,19 +14,17 @@
 	<div class="header">
 		<img src="/images/FoodFlightMock0.png">
 	</div>
-	<form id="results_form" action="#" th:action="@{/order_form}" method="post">
-		<span id="result_headers">
-			<label for="rest_name">Name</label>
-			<label for="rest_address">Address</label>
-			<label for="rest_cuisine">Cuisine</label>
-		</span><br>
-		<span id="result_row" th:each="restaurant : ${restaurants}">						
-			<span id="rest_name"><button type="submit" th:name="id" th:value="${restaurant.id}" th:text="${restaurant.name}"></button></span>
-			<span id="rest_address" th:text="${restaurant.address}"></span>
-			<span id="rest_cuisine" th:text="${restaurant.cuisine}"></span><br><br>
+	<form action="/order/summary" method="post">
+		<span id="menu_item_row" th:each="menu_item : ${menu}">
+			<input type="number" id="qty" name="itemqty" value="0" min="0">
+			<span id="item_name" th:text="${menu_item.name}"></span>
+			<span id="item_type" th:text="${menu_item.dishType}"></span><br>
+			<span id="item_description" th:text="${menu_item.dishDescription}"></span>
+			<span id="item_price" th:text="${menu_item.price}"></span><br><br>
 		</span>
 		<input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
-	</form>
+		<input type="submit">
+	</form>	
 </div>
 </body>
 </html>

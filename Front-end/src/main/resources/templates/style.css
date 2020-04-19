@@ -178,16 +178,26 @@ p {
 	width: 200px;
 }
 
-.tip_field{
+.tip_field {
 	margin-left: 55px !important;
 	width: 200px;
 }
 
-.grand_total_field{
+.grand_total_field {
 	margin-left: 55px !important;
 	width: 200px;
 }
 
+.payment_type {
+	margin-left: 55px !important;
+	width: 200px;
+}
+
+.payment_type_select {
+	margin-left: 55px !important;
+	width: 200px;
+	color: black;
+}
 
 
 input[type=number]{
@@ -215,7 +225,6 @@ input[type=number]{
 	color: #f2f2f0;
 	margin: auto;
 }
-
 #result_headers {
 	display: table-row;
 	font-size: 24px;

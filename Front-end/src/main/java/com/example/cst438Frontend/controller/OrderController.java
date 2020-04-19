@@ -102,7 +102,7 @@ public class OrderController {
 	
 	// when item quantities are submitted from restaurant order page,
 	//
-	@PostMapping("updateme") // need route
+	@PostMapping("order/summary") // need route
 	public String getOrderDetails(
 			@RequestParam("orderJSON") String orderJSON, 
 			@RequestParam("sessionId") String sessionId, 
@@ -140,9 +140,7 @@ public class OrderController {
 		session.setGrandtotal(grandtotal);
 		String paymentType = "Paypal";
 	
-		
 		sessionRepository.save(session);
-		
 		
 		
 		Customer customer = new Customer(
