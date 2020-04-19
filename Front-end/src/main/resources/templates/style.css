@@ -66,6 +66,7 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  color: black !important;
 }
 
 .find_form input[type=submit] {
