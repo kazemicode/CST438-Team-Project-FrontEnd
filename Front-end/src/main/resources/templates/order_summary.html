@@ -40,7 +40,7 @@
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
        
        <div class ="totals_table_container">
-       <form id=€œresults_form action=# th:action=€œ@{/order_form(sessionId=${sessionId})} th:method=€œpost>
+       <form id=€œresults_form action=# th:action="€œ@{/order_summary}" th:method=€œpost>
        <table class="totals">
          <tbody>
          <tr class="customer_firstname">
@@ -67,15 +67,15 @@
             </tr>
             <tr class="subtotal">
               <td>subtotal:</td>
-              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.getOrderTotal()"></td>
+              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.orderTotal" min ="0.00"></td>
             </tr>
             <tr class="tip">
                 <td>tip:</td>
-                <td><input class="tip_field" id="t_field" type="number" th:value="order.getTip()" min="0" step="0.01"></td>
+                <td><input class="tip_field" id="t_field" type="number" th:value="order.tip" min="0.00" step="0.01"></td>
             </tr>
             <tr class="grand_total">
                 <td> grand total:</td>
-                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.getGrandTotal()" min="0" step="0.01"></td>
+                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.grandTotal" min="0.00" step="0.01"></td>
             </tr>
             </tbody>
        </table>
@@ -88,6 +88,7 @@
                 </td>
             </tr>
        </table>
+       <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
        </form>
        <br />
       </div>

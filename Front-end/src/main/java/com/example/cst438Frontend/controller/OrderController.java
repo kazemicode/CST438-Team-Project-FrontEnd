@@ -107,6 +107,7 @@ public class OrderController {
 			@RequestParam("orderJSON") String orderJSON, 
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
+		
 		model.addAttribute("orderJSON", orderJSON);
 		model.addAttribute("sessionId", sessionId);
 		
@@ -115,7 +116,7 @@ public class OrderController {
 		sessionRepository.save(session);
 		
 	return "order_summary";
-	}
+	};
 
 	/*
 	 * Add order to table and display success page. In case of validation errors, return form. 
@@ -156,7 +157,7 @@ public class OrderController {
 				session.getZipcode(),
 				session.getPhone());
 		
-		Order order = new Order(		// Why is this being created here instead of in order/summary? 
+		Order order = new Order(	
 				new Timestamp(new Date().getTime()),
 				session.getSubtotal(),
 				session.getTip(),
