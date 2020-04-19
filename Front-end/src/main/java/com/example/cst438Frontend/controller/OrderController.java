@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +33,6 @@ import com.example.cst438Frontend.service.FindRestaurantService;
 import com.example.cst438Frontend.service.MenuService;
 import com.example.cst438Frontend.service.OrderService;
 import com.example.cst438Frontend.service.ZomatoService;
-
-//import org.springframework.boot.configurationprocessor.json.JSONArray;
-//import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 @Controller
 public class OrderController {
@@ -164,6 +164,12 @@ public class OrderController {
 		
 		List<OrderLineItem> orderLineItems = new ArrayList<>();
 		// todo: parse JSON string to add orderlineitem objects to list
+		
+		JSONArray oliArray = new JSONArray(session.getOrderLineItems());
+		oliArray.forEach(json -> {
+			JSONObject oli = (JSONObject) json;
+			orderLineItems.add(new OrderLineItem(oli));
+		});
 		
 		customer.setOrder(order);
 		order.setCustomer(customer);
