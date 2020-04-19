@@ -107,10 +107,13 @@ public class OrderController {
 			@RequestParam("orderJSON") String orderJSON, 
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
+		model.addAttribute("orderJSON", orderJSON);
 		model.addAttribute("sessionId", sessionId);
+		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setOrderLineItems(orderJSON);
 		sessionRepository.save(session);
+		
 	return "order_summary";
 	}
 
