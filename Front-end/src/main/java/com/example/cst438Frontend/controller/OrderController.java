@@ -2,9 +2,9 @@ package com.example.cst438Frontend.controller;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import org.json.*;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,6 @@ import com.example.cst438Frontend.service.FindRestaurantService;
 import com.example.cst438Frontend.service.MenuService;
 import com.example.cst438Frontend.service.OrderService;
 import com.example.cst438Frontend.service.ZomatoService;
-
-//import org.springframework.boot.configurationprocessor.json.JSONArray;
-//import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 @Controller
 public class OrderController {
@@ -93,10 +90,10 @@ public class OrderController {
 			Model model) {
 		// Do look up for menu and pass that to next View
 		List<MenuItem> menu = menuService.GetRestaurantMenu(Long.valueOf(id));
-//		System.out.println(menu);
+		System.out.println(menu);
 		model.addAttribute("menu", menu);
 		model.addAttribute("sessionId", sessionId);
-		
+	
 		return "restaurant_menu";
 	}
 	
@@ -104,7 +101,7 @@ public class OrderController {
 	//
 	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-			@RequestParam("qty") String orderJSON, 
+			@RequestParam("qty") String qty, 
 			@RequestParam("dishId") String dishId,
 			@RequestParam("price") String price,
 			@RequestParam("sessionId") String sessionId, 
@@ -113,20 +110,8 @@ public class OrderController {
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setOrderLineItems(orderJSON);
 		sessionRepository.save(session);
-	return "order_summary";
+		return "order_summary";
 	}
-	
-//	@PostMapping("/order/summary") // need route
-//	public String getOrderDetails(
-//			@RequestParam("orderJSON") String orderJSON, 
-//			@RequestParam("sessionId") String sessionId, 
-//			Model model) {
-//		model.addAttribute("sessionId", sessionId);
-//		Session session = sessionRepository.findById(Long.parseLong(sessionId));
-//		session.setOrderLineItems(orderJSON);
-//		sessionRepository.save(session);
-//		return "order_summary";
-//	}
 
 	/*
 	 * Add order to table and display success page. In case of validation errors, return form. 
@@ -167,7 +152,7 @@ public class OrderController {
 				session.getZipcode(),
 				session.getPhone());
 		
-		Order order = new Order(
+		Order order = new Order(	
 				new Timestamp(new Date().getTime()),
 				session.getSubtotal(),
 				session.getTip(),

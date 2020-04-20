@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="www.thymeleaf.org">
     <head>
-        
-        <meta charset="ISO-8859-1">
-		<link href="/style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="/cart_checkout.js"></script>
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<title>Your Order</title>
+
+        <title>Your Order</title>
+        <link href="/style.css" rel="stylesheet" type="text/css">
+    	<link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:600i,700i|Roboto+Mono&display=swap" rel="stylesheet">
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<meta charset="ISO-8859-1">
+
     </head>
 
     <body>
@@ -30,8 +30,8 @@
          </thead>
          <tbody>
           	<tr th:each="lineItem: ${lineItems}">
-          		<td th:text = ${lineItem.getDish_id()}></td>
-          		<td th:text = ${lineItem.getLine_item_amount()}></td>
+          		<td th:text = ${lineItem.getDishId()}></td>
+          		<td th:text = ${lineItem.getLineItemAmount()}></td>
           		<td th:text = ${lineItem.getQty()}></td>          	
           	</tr>
          </tbody>
@@ -54,9 +54,19 @@
               <td>phone number:</td>
               <td><input class="phone_field" type="text"></td>
             </tr>
+            <tr class="payment_type">
+            	<td>payment type:</td>
+            	<td><select class="payment_type_select">
+            			<option th:value="credit_card">Credit Card</option>
+            			<option th:value="paypal" >Paypal</option>
+            			<option th:value="google_pay">Google Pay</option>
+            			<option th:value="shopify">Shop Pay</option>
+            		</select>
+            	</td>
+            </tr>
             <tr class="subtotal">
               <td>subtotal:</td>
-              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.orderTotal" min="0" step="0.01"></td>
+              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.orderTotal" min ="0.00"></td>
             </tr>
             <tr class="tip">
                 <td>tip:</td>
@@ -64,7 +74,7 @@
             </tr>
             <tr class="grand_total">
                 <td> grand total:</td>
-                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.grandTotal" min="0" step="0.01"></td>
+                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.grandTotal" min="0.00" step="0.01"></td>
             </tr>
             </tbody>
        </table>
@@ -72,11 +82,12 @@
             <tr class="cart_buttons">
                 <td class="button_group">
                   <button class="startOver" th:name="startOver">Start Over</button>
-                  <button class="updateTotal" th:name="updateTotal" oninput="calcFinal()">Update Total</button>
+                  <button class="updateTotal" th:name="updateTotal" onclick="calcFinal()">Update Total</button>
                   <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
                 </td>
             </tr>
        </table>
+       <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
        </form>
        <br />
       </div>
