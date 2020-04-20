@@ -45,7 +45,7 @@ public class Session {
 		state = "";
 		zipcode = "";
 		phone = "";
-		orderLineItems = "";
+		orderLineItems = "{}";
 	}
 	
 	public Session(String firstName, String lastName, String addr1, String addr2, String city, String state,
