@@ -39,8 +39,8 @@
        </table>
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
        
-       <div class ="totals_table_container">
-       <form id=€œresults_form action=# th:action="@{/order/summary}" th:method=€œpost>
+       <div class ="totals_table_container">       
+       <form id="resultsForm" action="#" th:action="@{/order_success}" method="post">
        <table class="totals">
          <tbody>
          <tr class="customer_firstname">
@@ -71,7 +71,7 @@
             </tr>
             <tr class="tip">
                 <td>tip:</td>
-                <td><input class="tip_field" id="t_field" type="number" th:value="order.tip" min="0.00" step="0.01"></td>
+                <td><input class="tip_field" id="t_field" type="number" th:value="order.tip" min="0" step="0.01"></td>
             </tr>
             <tr class="grand_total">
                 <td> grand total:</td>

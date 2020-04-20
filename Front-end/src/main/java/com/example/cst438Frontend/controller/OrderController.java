@@ -104,20 +104,28 @@ public class OrderController {
 	//
 	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-			@RequestParam("qty") String orderJSON,
-			@RequestParam("dishId") String dishId, 
+			@RequestParam("qty") String orderJSON, 
+			@RequestParam("dishId") String dishId,
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
-		
-		//model.addAttribute("orderJSON", orderJSON);
 		model.addAttribute("sessionId", sessionId);
-		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setOrderLineItems(orderJSON);
 		sessionRepository.save(session);
-		
 	return "order_summary";
-	};
+	}
+	
+//	@PostMapping("/order/summary") // need route
+//	public String getOrderDetails(
+//			@RequestParam("orderJSON") String orderJSON, 
+//			@RequestParam("sessionId") String sessionId, 
+//			Model model) {
+//		model.addAttribute("sessionId", sessionId);
+//		Session session = sessionRepository.findById(Long.parseLong(sessionId));
+//		session.setOrderLineItems(orderJSON);
+//		sessionRepository.save(session);
+//		return "order_summary";
+//	}
 
 	/*
 	 * Add order to table and display success page. In case of validation errors, return form. 
