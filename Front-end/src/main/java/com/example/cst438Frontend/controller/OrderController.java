@@ -106,6 +106,7 @@ public class OrderController {
 	public String getOrderDetails(
 			@RequestParam("qty") String orderJSON, 
 			@RequestParam("dishId") String dishId,
+			@RequestParam("price") String price,
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		model.addAttribute("sessionId", sessionId);
