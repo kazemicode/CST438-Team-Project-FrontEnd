@@ -101,14 +101,23 @@ public class OrderController {
 	//
 	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-			@RequestParam("qty") String qty, 
-			@RequestParam("dishId") String dishId,
-			@RequestParam("price") String price,
+			@RequestParam("qty") List<String> qty, 
+			@RequestParam("dishId") List<String> dishId,
+			@RequestParam("price") List<String> price,
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		model.addAttribute("sessionId", sessionId);
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
-		session.setOrderLineItems(orderJSON);
+		JSONArray orderJSON = new JSONArray();
+		for (int i = 0; i < qty.size(); i++) {
+			System.out.println("Qty index " + i + " is: " + qty.get(i));
+			JSONObject lineItem = new JSONObject();
+			lineItem.put("qty", qty.get(i));
+			lineItem.put("dishId", dishId.get(i));
+			lineItem.put("price", price.get(i));
+			orderJSON.put(lineItem);
+		}
+		session.setOrderLineItems(orderJSON.toString());
 		sessionRepository.save(session);
 		return "order_summary";
 	}
@@ -161,6 +170,12 @@ public class OrderController {
 		
 		List<OrderLineItem> orderLineItems = new ArrayList<>();
 		// todo: parse JSON string to add orderlineitem objects to list
+		
+		JSONArray oliArray = new JSONArray(session.getOrderLineItems());
+		oliArray.forEach(json -> {
+			JSONObject oli = (JSONObject) json;
+			orderLineItems.add(new OrderLineItem(oli));
+		});
 		
 		customer.setOrder(order);
 		order.setCustomer(customer);
