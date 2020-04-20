@@ -93,22 +93,22 @@ public class OrderController {
 		System.out.println(menu);
 		model.addAttribute("menu", menu);
 		model.addAttribute("sessionId", sessionId);
-		
+	
 		return "restaurant_menu";
 	}
 	
 	// when item quantities are submitted from restaurant order page,
 	//
-	@PostMapping("updateme") // need route
+	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-			@RequestParam("orderJSON") String orderJSON, 
+		@RequestParam("orderJSON") String orderJSON, 
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		model.addAttribute("sessionId", sessionId);
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setOrderLineItems(orderJSON);
 		sessionRepository.save(session);
-	return "order_summary";
+		return "order_summary";
 	}
 
 	/*
@@ -137,9 +137,7 @@ public class OrderController {
 		session.setGrandtotal(grandtotal);
 		String paymentType = "Paypal";
 	
-		
 		sessionRepository.save(session);
-		
 		
 		
 		Customer customer = new Customer(
@@ -152,7 +150,7 @@ public class OrderController {
 				session.getZipcode(),
 				session.getPhone());
 		
-		Order order = new Order(
+		Order order = new Order(	
 				new Timestamp(new Date().getTime()),
 				session.getSubtotal(),
 				session.getTip(),
