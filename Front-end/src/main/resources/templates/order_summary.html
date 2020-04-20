@@ -40,7 +40,7 @@
        <br /> <br /> <br /> <br /> <br /> <br /> <br />
        
        <div class ="totals_table_container">
-       <form id=€œresults_form action=# th:action="€œ@{/order_summary}" th:method=€œpost>
+       <form id=€œresults_form action=# th:action="@{/order/summary}" th:method=€œpost>
        <table class="totals">
          <tbody>
          <tr class="customer_firstname">
@@ -83,7 +83,7 @@
             <tr class="cart_buttons">
                 <td class="button_group">
                   <button class="startOver" th:name="startOver">Start Over</button>
-                  <button class="updateTotal" th:name="updateTotal" oninput="calcFinal()">Update Total</button>
+                  <button class="updateTotal" th:name="updateTotal" onclick="calcFinal()">Update Total</button>
                   <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
                 </td>
             </tr>

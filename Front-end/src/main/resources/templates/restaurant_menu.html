@@ -15,7 +15,7 @@
 	<div class="header">
 		<img src="/images/FoodFlightMock0.png">
 	</div>
-	<form action="#" th:action="@{/order/summary}" method="post" name="orderForm">
+	<form id="orderForm" action="#" th:action="@{/order/summary}" method="post" name="orderForm">
 		<span id="menu_item_row" th:each="menu_item : ${menu}">
 			<input type="number" id="qty" name="qty" value="0" min="0">
 			<input type="hidden" id="dishId" th:name="dishId" th:value="${menu_item.id}" />

@@ -104,11 +104,12 @@ public class OrderController {
 	//
 	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-			@RequestParam("orderJSON") String orderJSON, 
+			@RequestParam("qty") String orderJSON,
+			@RequestParam("dishId") String dishId, 
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		
-		model.addAttribute("orderJSON", orderJSON);
+		//model.addAttribute("orderJSON", orderJSON);
 		model.addAttribute("sessionId", sessionId);
 		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
