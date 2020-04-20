@@ -101,7 +101,9 @@ public class OrderController {
 	//
 	@PostMapping("/order/summary") // need route
 	public String getOrderDetails(
-		@RequestParam("orderJSON") String orderJSON, 
+			@RequestParam("qty") String qty, 
+			@RequestParam("dishId") String dishId,
+			@RequestParam("price") String price,
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		model.addAttribute("sessionId", sessionId);
