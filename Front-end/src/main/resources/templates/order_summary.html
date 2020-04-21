@@ -6,96 +6,73 @@
         <link href="/style.css" rel="stylesheet" type="text/css">
     	<link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:600i,700i|Roboto+Mono&display=swap" rel="stylesheet">
     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    	<script type="application/javascript" th:src="@{/cart_checkout.js}"></script>
 		<meta charset="ISO-8859-1">
 
     </head>
 
     <body>
-      <div id="cart_header">
-        <header id="cart_header_text">
-          <h2>Your Meal Ticket</h2>
-          <br />
-        </header>
-      </div>
+      <header id="cart_header_text">
+        <h2>Your Meal Ticket</h2>
+        <br />
+      </header>
+      
       <main>
-      <div class='container text-center'>
        <table id="cart">
-         <thead>
-           <tr>
-             <th class="cart_item">Item</th>
-             <th class="cart_price">Price</th>
-             <th class="cart_quantity">Quantity</th>
-           </tr>
-         </thead>
-         <tbody>
-          	<tr th:each="lineItem: ${lineItems}">
-          		<td th:text = ${lineItem.getDishId()}></td>
-          		<td th:text = ${lineItem.getLineItemAmount()}></td>
-          		<td th:text = ${lineItem.getQty()}></td>          	
-          	</tr>
-         </tbody>
-       </table>
-       <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        <tr>
+          <th class="cart_item">Item</th>
+          <th class="cart_price">Price</th>
+          <th class="cart_quantity">Quantity</th>
+        </tr>
+        <tr th:each="lineItem: ${lineItems}">
+          <td th:text = ${lineItem.dishId}></td>
+          <td th:text = ${lineItem.lineItemAmount}></td>
+          <td th:text = ${lineItem.qty}></td>          	
+        </tr>
+       </table><br><br><br><br><br><br><br>
        
-       <div class ="totals_table_container">       
-       <form id="resultsForm" action="#" th:action="@{/order_success}" method="post">
-       <table class="totals">
-         <tbody>
-         <tr class="customer_firstname">
-              <td>first name:</td>
-              <td><input class="firstname_field" type="text"></td>
-            </tr>
-            <tr class="customer_lastname">
-              <td>last name:</td>
-              <td><input class="lastname_field" type="text"></td>
-            </tr>
-         	<tr class="customer_phone">
-              <td>phone number:</td>
-              <td><input class="phone_field" type="text"></td>
-            </tr>
-            <tr class="payment_type">
-            	<td>payment type:</td>
-            	<td><select class="payment_type_select">
-            			<option th:value="credit_card">Credit Card</option>
-            			<option th:value="paypal" >Paypal</option>
-            			<option th:value="google_pay">Google Pay</option>
-            			<option th:value="shopify">Shop Pay</option>
-            		</select>
-            	</td>
-            </tr>
-            <tr class="subtotal">
-              <td>subtotal:</td>
-              <td><input class="subtotal_field" id="sf_field" type="number" th:value="order.orderTotal" min ="0.00"></td>
-            </tr>
-            <tr class="tip">
-                <td>tip:</td>
-                <td><input class="tip_field" id="t_field" type="number" th:value="order.tip" min="0" step="0.01"></td>
-            </tr>
-            <tr class="grand_total">
-                <td> grand total:</td>
-                <td><input class="grand_total_field" id="gt_field" type="number" th:value="order.grandTotal" min="0.00" step="0.01"></td>
-            </tr>
-            </tbody>
-       </table>
-       <table>
-            <tr class="cart_buttons">
-                <td class="button_group">
-                  <button class="startOver" th:name="startOver">Start Over</button>
-                  <button class="updateTotal" th:name="updateTotal" onclick="calcFinal()">Update Total</button>
-                  <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
-                </td>
-            </tr>
-       </table>
-       <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
-       </form>
-       <br />
-      </div>
-      <br />
-      </div>
+       <form id="resultsForm" action="#" th:action="@{/order/submit}" method="post">
+
+        <label for="firstname_field">First name:</label>
+        <input id="firstname_field" type="text" th:name="firstName"><br>
+
+        <label for="lastname_field">Last name:</label>
+        <input id="lastname_field" type="text" th:name="lastName"><br>
+
+        <label for="phone_field">Phone number:</label>
+        <input id="phone_field" type="text" th:name="phone"><br>
+
+        <label for="payment_type_select">Payment type:</label>
+        <select class="payment_type_select">
+          <option th:value="credit_card">Credit Card</option>
+          <option th:value="paypal">Paypal</option>
+          <option th:value="google_pay">Google Pay</option>
+          <option th:value="shopify">Shop Pay</option>
+        </select><br>
+
+        <label for="subtotal_field">Subtotal:</label>
+        <span id="subtotal_field" th:text="${orderTotal}"></span><br>
+        <input type="hidden" th:name="subtotal" th:value="${orderTotal}" />
+        
+        <label for="tip_field">Tip:</label>
+        <input id="tip_field" type="number" th:value="0" min="0" step="0.01" th:name="tip"><br>
+        
+        <label for="grand_total_field">Grand total:</label>
+        <span id="grand_total_field" th:text="${orderTotal}"></span><br>
+		<input id="grandTotal" type="hidden" th:name="grandtotal" th:value="${orderTotal}" />
+
+        <button type="button" class="updateTotal" th:name="updateTotal" onclick="calcFinal()">Update Total</button>
+        <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
+        <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
+
+      </form><br>
+      <form action="#" th:action="@{/nearme}" method="post">
+      	<button class="startOver" th:name="startOver">Start Over</button>
+      	<input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
+      </form>
+
   </main>
-  <footer>
-  </footer>
       
 </body>
 </html>

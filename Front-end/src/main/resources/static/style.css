@@ -85,33 +85,33 @@ input[type=submit]:hover {
 h1 {
     background-color: #d2f0fa;
     color: pink !important;
-    font-family: 'Archivo Narrow', sans-serif !important;
+    /* font-family: 'Archivo Narrow', sans-serif !important; */
     font-size: 6em !important;
     margin-bottom: 0px !important;
     color: white !important;
 }
 
 h4 {
-    font-family: 'Courier New', Courier, monospace !important;
+    /* font-family: 'Courier New', Courier, monospace !important; */
     background-color: #b65059;
     color: white !important;
 }
 
 h2 {
-    font-family: 'Archivo Narrow', sans-serif !important;
+    /* font-family: 'Archivo Narrow', sans-serif !important; */
     font-size: 4em !important;
     background-color: #b65059;
     color: white !important;
 }
 
 p {
-    font-family: 'Courier New', Courier, monospace !important;
+    /* font-family: 'Courier New', Courier, monospace !important; */
     font-size: 13px;
     color: white;
 }
 
-#cart thead th {
-    font-family: 'Courier New', 'Courier New', Courier, monospace !important;
+#cart th {
+    /* font-family: 'Courier New', 'Courier New', Courier, monospace !important; */
     font-size: 16px; 
     font-weight: bold;
     text-align: center !important;
@@ -134,40 +134,42 @@ p {
     text-align: center;
 }
 
+.startOver, .updateTotal {
+    height: 50px;
+    width: 200px;
+    background: #f2f2f0;
+    border: none;
+    color: #425bbd;
+    /* font-family: 'Archivo Narrow', sans-serif !important; */
+	font-size: 24px;
+	border-radius: 4px;
+}
+
 .checkoutButton {
     height: 50px;
     width: 200px;
-    background: red;
+    background: #425bbd;
     border: none;
-    color: white;
-    font-family: 'Archivo Narrow', sans-serif !important;
-    font-size: 24px;
+    color: #f2f2f0;
+    /* font-family: 'Archivo Narrow', sans-serif !important; */
+	font-size: 24px;
+	border-radius: 4px;
 }
 
-.startOver {
+/* .updateTotal {
     height: 50px;
     width: 200px;
-    background: black;
+    background: #4884d4;
     border: none;
-    color: white;
+    color: #f2f2f0;
     font-family: 'Archivo Narrow', sans-serif !important;
     font-size: 24px;
-}
-
-.updateTotal {
-    height: 50px;
-    width: 200px;
-    background: black;
-    border: none;
-    color: white;
-    font-family: 'Archivo Narrow', sans-serif !important;
-    font-size: 24px;
-}
+} */
 
 .totals {
     margin-right: 40px;
     text-align: left;
-    font-family: 'Courier New', 'Courier New', 'Courier New', Courier, monospace !important;
+    /* font-family: 'Courier New', 'Courier New', 'Courier New', Courier, monospace !important; */
     font-size: 18px;
     color: white;
     border-collapse: separate;
@@ -205,12 +207,12 @@ input[type=number]{
 	color: black;
 }
 
-.totals_table_container {
+/* .totals_table_container {
 	width: 730px;
     position: relative;
     display: flex;
     justify-content: flex-end;
-}
+} */
 
 .customer_info_container {
 	width: 730px;

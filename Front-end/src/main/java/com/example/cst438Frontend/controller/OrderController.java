@@ -60,6 +60,12 @@ public class OrderController {
 		return "index";
 	}
 	
+	@PostMapping("/nearme")
+	public String findRestaurantsAgain(@RequestParam("sessionId") String sessionId) {
+		// Code to delete previous session from session table
+		return "index";
+	}
+	
 	// When address is submitted to find nearby restaurants, let's save
 	// address details to our sessions table and get the session id for future use
 	@PostMapping("/findrestaurants")
@@ -109,14 +115,24 @@ public class OrderController {
 		model.addAttribute("sessionId", sessionId);
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		JSONArray orderJSON = new JSONArray();
+		List<OrderLineItem> lineItems = new ArrayList<OrderLineItem>();
+		double runningTotal = 0;
 		for (int i = 0; i < qty.size(); i++) {
-			System.out.println("Qty index " + i + " is: " + qty.get(i));
-			JSONObject lineItem = new JSONObject();
-			lineItem.put("qty", qty.get(i));
-			lineItem.put("dishId", dishId.get(i));
-			lineItem.put("price", price.get(i));
-			orderJSON.put(lineItem);
+			int currentQty = Integer.parseInt(qty.get(i));
+			double currentPrice = Double.parseDouble(price.get(i));
+			long currentDish = Long.parseLong(dishId.get(i));
+			if (currentQty > 0) {
+				JSONObject lineItem = new JSONObject();
+				lineItem.put("qty", qty.get(i));
+				lineItem.put("dishId", dishId.get(i));
+				lineItem.put("price", price.get(i));
+				orderJSON.put(lineItem);
+				lineItems.add(new OrderLineItem(i + 1, currentDish, currentQty, currentPrice));
+				runningTotal += (currentQty * currentPrice);
+			}
 		}
+		model.addAttribute("lineItems", lineItems);
+		model.addAttribute("orderTotal", runningTotal);
 		session.setOrderLineItems(orderJSON.toString());
 		sessionRepository.save(session);
 		return "order_summary";
@@ -132,12 +148,15 @@ public class OrderController {
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName,
 			@RequestParam("phone") String phone,
-			@RequestParam("subtotal") double subtotal,
-			@RequestParam("tip") double tip,
-			@RequestParam("grandtotal") double grandtotal,
+			@RequestParam("subtotal") String s_subtotal,
+			@RequestParam("tip") String s_tip,
+			@RequestParam("grandtotal") String s_grandtotal,
 			@RequestParam("sessionId") String sessionId, 
 			Model model) {
 		
+		double subtotal = Double.parseDouble(s_subtotal);
+		double tip = Double.parseDouble(s_tip);
+		double grandtotal = Double.parseDouble(s_grandtotal);
 		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setFirstName(firstName);
@@ -149,7 +168,6 @@ public class OrderController {
 		String paymentType = "Paypal";
 	
 		sessionRepository.save(session);
-		
 		
 		Customer customer = new Customer(
 				session.getFirstName(), 
@@ -166,10 +184,11 @@ public class OrderController {
 				session.getSubtotal(),
 				session.getTip(),
 				session.getGrandtotal(),
-				paymentType); // todo: dropdown for payment type
+				paymentType); // TODO: drop down for payment type
+		order.setId(Long.parseLong(sessionId));
 		
 		List<OrderLineItem> orderLineItems = new ArrayList<>();
-		// todo: parse JSON string to add orderlineitem objects to list
+		// TODO: parse JSON string to add order line item objects to list
 		
 		JSONArray oliArray = new JSONArray(session.getOrderLineItems());
 		oliArray.forEach(json -> {
@@ -183,7 +202,8 @@ public class OrderController {
 		for(OrderLineItem ol : orderLineItems) {
 			ol.setOrder(order);
 		}
-		
+		customerRepository.save(customer);
+		model.addAttribute("orderId", order.getId());
 		return "order_success";
 	}
 
