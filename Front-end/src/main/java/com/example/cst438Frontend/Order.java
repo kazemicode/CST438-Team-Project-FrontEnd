@@ -130,9 +130,7 @@ public class Order implements Serializable {
 	}
 
 	public void setOrderLineItems(List<OrderLineItem> olis) {
-		olis.forEach(oli -> {
-			orderLineItems.add(oli);
-		});
+		olis = orderLineItems;
 	}
 
 	@Override

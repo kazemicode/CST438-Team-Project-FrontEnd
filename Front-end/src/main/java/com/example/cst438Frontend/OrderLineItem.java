@@ -38,7 +38,7 @@ public class OrderLineItem implements Serializable{
 
 	
 	public OrderLineItem() {
-		this(0, 0, 0, 0);
+		this(0, 0L, 0, 0);
 	}
 
 
