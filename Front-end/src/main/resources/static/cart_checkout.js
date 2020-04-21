@@ -5,7 +5,6 @@ $(document).ready(function() {
 		var sub = parseFloat($("#subtotal_field").text());
 		var tip = parseFloat($("#tip_field").val());
 		$("#grand_total_field").html(tip + sub);
-		$("#grandTotal").attr("th:value", tip + sub);
 	});
 
 });

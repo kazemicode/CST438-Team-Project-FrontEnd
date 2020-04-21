@@ -21,6 +21,7 @@ import com.example.cst438Frontend.Order;
 import com.example.cst438Frontend.OrderLineItem;
 import com.example.cst438Frontend.Session;
 import com.example.cst438Frontend.domain.CustomerRepository;
+import com.example.cst438Frontend.domain.LineItemInfo;
 import com.example.cst438Frontend.domain.OrderLineItemRepository;
 import com.example.cst438Frontend.domain.OrderRepository;
 import com.example.cst438Frontend.domain.Restaurant;
@@ -123,6 +124,7 @@ public class OrderController {
 			long currentDish = Long.parseLong(dishId.get(i));
 			if (currentQty > 0) {
 				JSONObject lineItem = new JSONObject();
+				lineItem.put("orderSequence", i + 1);
 				lineItem.put("qty", qty.get(i));
 				lineItem.put("dishId", dishId.get(i));
 				lineItem.put("price", price.get(i));
@@ -131,7 +133,8 @@ public class OrderController {
 				runningTotal += (currentQty * currentPrice);
 			}
 		}
-		model.addAttribute("lineItems", lineItems);
+		List<LineItemInfo> lineItemInfo = orderService.getLineItemInfo(lineItems);
+		model.addAttribute("lineItems", lineItemInfo);
 		model.addAttribute("orderTotal", runningTotal);
 		session.setOrderLineItems(orderJSON.toString());
 		sessionRepository.save(session);
@@ -157,6 +160,7 @@ public class OrderController {
 		double subtotal = Double.parseDouble(s_subtotal);
 		double tip = Double.parseDouble(s_tip);
 		double grandtotal = Double.parseDouble(s_grandtotal);
+		grandtotal += tip;
 		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setFirstName(firstName);

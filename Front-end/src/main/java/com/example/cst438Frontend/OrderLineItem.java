@@ -52,7 +52,7 @@ public class OrderLineItem implements Serializable{
 
 
 	public OrderLineItem(JSONObject oli) {
-		this.orderSequence = 0;
+		this.orderSequence = oli.getInt("orderSequence");
 		this.qty = oli.getInt("qty");
 		this.dishId = oli.getLong("dishId");
 		this.lineItemAmount = oli.getDouble("price");

@@ -26,13 +26,13 @@
           <th class="cart_quantity">Quantity</th>
         </tr>
         <tr th:each="lineItem: ${lineItems}">
-          <td th:text = ${lineItem.dishId}></td>
-          <td th:text = ${lineItem.lineItemAmount}></td>
+          <td th:text = ${lineItem.name}></td>
+          <td th:text = ${lineItem.price}></td>
           <td th:text = ${lineItem.qty}></td>          	
         </tr>
        </table><br><br><br><br><br><br><br>
        
-       <form id="resultsForm" action="#" th:action="@{/order/submit}" method="post">
+       <form id="checkout_form" action="#" th:action="@{/order/submit}" method="post">
 
         <label for="firstname_field">First name:</label>
         <input id="firstname_field" type="text" th:name="firstName"><br>
@@ -60,16 +60,16 @@
         
         <label for="grand_total_field">Grand total:</label>
         <span id="grand_total_field" th:text="${orderTotal}"></span><br>
-		<input id="grandTotal" type="hidden" th:name="grandtotal" th:value="${orderTotal}" />
+		    <input id="grandTotal" type="hidden" th:name="grandtotal" th:value="${orderTotal}">
 
         <button type="button" class="updateTotal" th:name="updateTotal" onclick="calcFinal()">Update Total</button>
         <button class="checkoutButton" th:name="checkoutButton" type="submit" th:value="true">Submit Order</button>
-        <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
+        <input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}">
 
       </form><br>
-      <form action="#" th:action="@{/nearme}" method="post">
+      <form id="start_over_btn" action="#" th:action="@{/nearme}" method="post">
       	<button class="startOver" th:name="startOver">Start Over</button>
-      	<input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}" th:text="${sessionId}" />
+      	<input type="hidden" id="sessionId" th:name="sessionId" th:value="${sessionId}">
       </form>
 
   </main>
