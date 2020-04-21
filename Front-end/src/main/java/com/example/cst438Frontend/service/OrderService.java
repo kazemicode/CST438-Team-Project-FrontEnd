@@ -31,7 +31,9 @@ public class OrderService {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	@Autowired
-	private FanoutExchange fanout;
+	private FanoutExchange fanoutOrder;
+	@Autowired
+	private FanoutExchange fanoutDelivery;
 	
 	// Returns order info object
 	public OrderInfo getOrderInfo(long orderId) {
@@ -78,10 +80,26 @@ public class OrderService {
 
 	
 	public void requestOrder(long orderId, String time, String customerName, String phoneNumber, String address, List<LineItemInfo> items, double total, String paymentType) {
-		String msg = "{\"Order Number\": \"" + orderId + "\" \"Time\": \"" + time + "\" \"Customer name\": \"" + customerName + "\" \"Phone\": \"" + phoneNumber + "\" \"address\": \"" + address + "\" \"Items\": \"" + items + "\" \"Total\": \\" + total + "\" \"Payment type\": \\" + "}";
-		System.out.println("Sending message:" + msg);
-		rabbitTemplate.convertSendAndReceive(fanout.getName(), "", // No routing key
+		String msg = "{\"Order Number\": \"" + orderId +
+				"\" \"Time\": \"" + time +
+				"\" \"Customer name\": \"" + customerName +
+				"\" \"Phone\": \"" + phoneNumber +
+				"\" \"address\": \"" + address +
+				"\" \"Items\": \"" + items +
+				"\" \"Total\": \"" + total +
+				"\" \"Payment type\": \"" + "\"}";
+		System.out.println("Sending order to restaurant:" + msg);
+		rabbitTemplate.convertSendAndReceive(fanoutOrder.getName(), "", // No routing key
 				msg);
+	}
+	
+	public void requestDelivery(long orderId, String time, String address, int restId) {
+		String msg = "\"Order Number\": \"" + orderId +
+				"\" \"Time\": \"" + time +
+				"\" \"Customer address\": \"" + address +
+				"\" \"Restaurant ID\": \"" + restId + "\"}";
+		System.out.println("Sending order to delivery personnel:" + msg);
+		rabbitTemplate.convertSendAndReceive(fanoutDelivery.getName(), "", msg);
 	}
 	
 }

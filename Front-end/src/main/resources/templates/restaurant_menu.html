@@ -5,7 +5,6 @@
 	<link href="/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- <script src="/order_form.js"></script> -->
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 
 <title>FoodFlight</title>
@@ -18,8 +17,8 @@
 	<form id="orderForm" action="#" th:action="@{/order/summary}" name="orderForm" method="post">
 		<span id="menu_item_row" th:each="menu_item : ${menu}">
 			<input type="number" id="qty" name="qty" value="0" min="0">
-			<input type="hidden" id="dishId" th:name="dishId" th:value="${menu_item.id}" />
-			<input type="hidden" id="price" th:name="price" th:value="${menu_item.price}" />
+			<input type="hidden" id="dishId" th:name="dishId" th:value="${menu_item.id}">
+			<input type="hidden" id="price" th:name="price" th:value="${menu_item.price}">
 			<span id="item_name" th:text="${menu_item.name}"></span>
 			<span id="item_type" th:text="${menu_item.dishType}"></span><br>
 			<span id="item_description" th:text="${menu_item.dishDescription}"></span>
