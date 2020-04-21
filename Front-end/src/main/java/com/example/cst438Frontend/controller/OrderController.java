@@ -126,6 +126,7 @@ public class OrderController {
 				lineItem.put("qty", qty.get(i));
 				lineItem.put("dishId", dishId.get(i));
 				lineItem.put("price", price.get(i));
+				lineItem.put("orderSequence", i + 1);
 				orderJSON.put(lineItem);
 				lineItems.add(new OrderLineItem(i + 1, currentDish, currentQty, currentPrice));
 				runningTotal += (currentQty * currentPrice);
@@ -157,6 +158,7 @@ public class OrderController {
 		double subtotal = Double.parseDouble(s_subtotal);
 		double tip = Double.parseDouble(s_tip);
 		double grandtotal = Double.parseDouble(s_grandtotal);
+		String paymentType = "Paypal";
 		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setFirstName(firstName);
@@ -165,10 +167,9 @@ public class OrderController {
 		session.setSubtotal(subtotal);
 		session.setTip(tip);
 		session.setGrandtotal(grandtotal);
-		String paymentType = "Paypal";
-	
-		sessionRepository.save(session);
+		session.setPaymentType(paymentType);
 		
+		// Create Customer entity
 		Customer customer = new Customer(
 				session.getFirstName(), 
 				session.getLastName(),
@@ -179,16 +180,16 @@ public class OrderController {
 				session.getZipcode(),
 				session.getPhone());
 		
+		// Create Order entity
 		Order order = new Order(	
 				new Timestamp(new Date().getTime()),
 				session.getSubtotal(),
 				session.getTip(),
 				session.getGrandtotal(),
-				paymentType); // TODO: drop down for payment type
-		order.setId(Long.parseLong(sessionId));
+				session.getPaymentType()); // TODO: drop down for payment type
+
 		
 		List<OrderLineItem> orderLineItems = new ArrayList<>();
-		// TODO: parse JSON string to add order line item objects to list
 		
 		JSONArray oliArray = new JSONArray(session.getOrderLineItems());
 		oliArray.forEach(json -> {
@@ -196,15 +197,24 @@ public class OrderController {
 			orderLineItems.add(new OrderLineItem(oli));
 		});
 		
-		customer.setOrder(order);
-		order.setCustomer(customer);
+		
+		order.setCustomer(customer); // associate the customer with the order
 		order.setOrderLineItems(orderLineItems);
-		for(OrderLineItem ol : orderLineItems) {
-			ol.setOrder(order);
-		}
-		customerRepository.save(customer);
+		
+		  for(OrderLineItem ol : orderLineItems) { 
+			  order.getOrderLineItems().add(ol);  // associate each orderlineitem w/ order
+			  ol.setOrder(order);   // associate the order with each orderlineitem
+		  }
+		 
+		 
+		
+		customer.setOrder(order); // associate the order with the customer
+		sessionRepository.save(session);
+		customerRepository.save(customer); // save customer, should cascade to saving order/orderlineitems
 		model.addAttribute("orderId", order.getId());
 		return "order_success";
+		
+		
 	}
 
 }

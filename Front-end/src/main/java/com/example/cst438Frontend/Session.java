@@ -32,8 +32,11 @@ public class Session {
 	private double tip;
 	@Column(name = "grand_total")
 	private double grandtotal;
+	@Column(name = "payment_type")
+	private String paymentType;
 	@Column(name = "order_line_items")
 	private String orderLineItems;
+
 	
 	public Session()
 	{
@@ -45,11 +48,13 @@ public class Session {
 		state = "";
 		zipcode = "";
 		phone = "";
+		paymentType= "";
 		orderLineItems = "{}";
 	}
+		
 	
 	public Session(String firstName, String lastName, String addr1, String addr2, String city, String state,
-			String zipcode, String phone, double subtotal, double tip, double grandtotal, String orderLineItems) {
+			String zipcode, String phone, double subtotal, double tip, double grandtotal, String paymentType, String orderLineItems) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -62,6 +67,7 @@ public class Session {
 		this.subtotal = subtotal;
 		this.tip = tip;
 		this.grandtotal = grandtotal;
+		this.paymentType = paymentType;
 		this.orderLineItems = orderLineItems;
 	}
 	public long getId() {
@@ -142,8 +148,13 @@ public class Session {
 	public void setOrderLineItems(String orderLineItems) {
 		this.orderLineItems = orderLineItems;
 	}
-	
-	
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
 
 }
 
