@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.cst438Frontend.*;
@@ -14,7 +15,7 @@ public class OrderControllerTest {
 	
 	@Autowired CustomerRepository customerRepository;
 
-	
+@Test	
 public void ControllerSaveTest() {
 	Customer c = new Customer("David", "Wisneski", "100 Campus Center", "", "Seaside", "CA", "93955", "");
 
