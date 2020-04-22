@@ -3,13 +3,13 @@
 # CST 438 Team Project: Food Flight
 *A web-based application based on Postmates designed and developed by:*
 
-*Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)*
+**Ryan Dorrity** ([@rdorrity](https://github.com/rdorrity/))
 
-*Sara Kazemi [@kazemicode](https://github.com/kazemicode/)*
+**Sara Kazemi** ([@kazemicode](https://github.com/kazemicode/))
 
-*Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)*
+**Nathan Warren-Acord** ([@nwarcord](https://github.com/nwarcord/))
 
-*Cody Young [@codyayoung](https://github.com/codyayoung/)*
+**Cody Young** ([@codyayoung](https://github.com/codyayoung/))
 
 ## Deployment Setup
 ### Schema
@@ -43,6 +43,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 #Hibernate
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.hibernate.ddl-auto=update 
+spring.jpa.hibernate.use-new-id-generator-mappings=false
 ```
 ## Run Front-end application and back-end services
 Run this application as well as the back-end restaurant messaging and delivery person messaging services.
