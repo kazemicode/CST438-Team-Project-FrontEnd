@@ -1,6 +1,8 @@
 package com.example.cst438Frontend.controller;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +65,7 @@ public class OrderController {
 	
 	@PostMapping("/nearme")
 	public String findRestaurantsAgain(@RequestParam("sessionId") String sessionId) {
-		// Code to delete previous session from session table
+		sessionRepository.deleteById(Long.parseLong(sessionId));
 		return "index";
 	}
 	
@@ -131,9 +133,14 @@ public class OrderController {
 				lineItem.put("orderSequence", i + 1);
 				orderJSON.put(lineItem);
 				lineItems.add(new OrderLineItem(i + 1, currentDish, currentQty, currentPrice));
-				runningTotal += (currentQty * currentPrice);
+				BigDecimal bd = new BigDecimal(Double.toString(runningTotal));
+				BigDecimal bdTotal = new BigDecimal(Double.toString(currentQty * currentPrice));
+				bd = bd.add(bdTotal);
+				runningTotal = bd.doubleValue();
 			}
 		}
+		DecimalFormat rt = new DecimalFormat("#0.00");
+		runningTotal = Double.parseDouble(rt.format(runningTotal));
 		List<LineItemInfo> lineItemInfo = orderService.getLineItemInfo(lineItems);
 		model.addAttribute("lineItems", lineItemInfo);
 		model.addAttribute("orderTotal", runningTotal);
@@ -152,6 +159,7 @@ public class OrderController {
 			@RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName,
 			@RequestParam("phone") String phone,
+			@RequestParam("paymentMethod") String paymentType,
 			@RequestParam("subtotal") String s_subtotal,
 			@RequestParam("tip") String s_tip,
 			@RequestParam("grandtotal") String s_grandtotal,
@@ -162,7 +170,6 @@ public class OrderController {
 		double tip = Double.parseDouble(s_tip);
 		double grandtotal = Double.parseDouble(s_grandtotal);
 		grandtotal += tip;
-		String paymentType = "Paypal";
 		
 		Session session = sessionRepository.findById(Long.parseLong(sessionId));
 		session.setFirstName(firstName);
@@ -215,6 +222,10 @@ public class OrderController {
 		customer.setOrder(order); // associate the order with the customer
 		sessionRepository.save(session);
 		customerRepository.save(customer); // save customer, should cascade to saving order/orderlineitems
+		List<LineItemInfo> lineInfos = orderService.getLineItemInfo(order.getOrderLineItems());
+		orderService.requestOrder(order.getId(), order.getOrderDatetime().toString(), customer.getFirstName() + " " + customer.getLastName(), customer.getPhone(), customer.getAddress1(), lineInfos, order.getOrderTotal(), paymentType);
+		orderService.requestDelivery(order.getId(), order.getOrderDatetime().toString(), customer.getAddress1(), lineInfos.get(0).getRestId());
+		sessionRepository.deleteById(session.getId());
 		model.addAttribute("orderId", order.getId());
 		return "order_success";
 		

@@ -93,7 +93,7 @@ public class OrderService {
 				msg);
 	}
 	
-	public void requestDelivery(long orderId, String time, String address, int restId) {
+	public void requestDelivery(long orderId, String time, String address, long restId) {
 		String msg = "\"Order Number\": \"" + orderId +
 				"\" \"Time\": \"" + time +
 				"\" \"Customer address\": \"" + address +
