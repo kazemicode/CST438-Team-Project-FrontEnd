@@ -80,12 +80,11 @@ public class OrderService {
 	}
 
 	
-	public void requestOrder(long orderId, String time, String customerName, String phoneNumber, String address, List<LineItemInfo> items, double total, String paymentType) {
+	public void requestOrder(long orderId, String time, String customerName, String phoneNumber, List<LineItemInfo> items, double total, String paymentType) {
 		String msg = "{\"Order Number\": \"" + orderId +
 				"\" \"Time\": \"" + time +
 				"\" \"Customer name\": \"" + customerName +
 				"\" \"Phone\": \"" + phoneNumber +
-				"\" \"address\": \"" + address +
 				"\" \"Items\": \"" + items +
 				"\" \"Total\": \"" + total +
 				"\" \"Payment type\": \"" + "\"}";
@@ -95,9 +94,10 @@ public class OrderService {
 		
 	}
 	
-	public void requestDelivery(long orderId, String time, String address, long restId) {
+	public void requestDelivery(long orderId, String time, String fname, String address, long restId) {
 		String msg = "\"Order Number\": \"" + orderId +
 				"\" \"Time\": \"" + time +
+				"\" \"Customer name\": \"" + fname +
 				"\" \"Customer address\": \"" + address +
 				"\" \"Restaurant ID\": \"" + restId + "\"}";
 		System.out.println("Sending order to delivery personnel:" + msg);

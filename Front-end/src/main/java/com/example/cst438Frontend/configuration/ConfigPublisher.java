@@ -28,10 +28,10 @@ public class ConfigPublisher {
 				topicExchange,
 				BindingBuilder
 				.bind(deliveryQueue)
-				.to(topicExchange).with("*.delivery"),
+				.to(topicExchange).with("delivery.*"),
 				BindingBuilder
 				.bind(restaurantQueue)
-				.to(topicExchange).with("*.restaurant"));
+				.to(topicExchange).with("restaurant.*"));
 				
 	}
 	
