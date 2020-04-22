@@ -64,10 +64,12 @@ Clicking on a desired restaurant will display its menu page, enabling the user t
 
 ### Order Summary
 Clicking `Submit` on the Order page will display an Order Summary page for the user to review. The user must input their name, phone number, and tip amount before confirming their order. Alternatively, they can return to the beginning, which deletes the current session.
+
 ![Order Summary page](docs/ff3.gif)
 
 ### Order Confirmation
 Finally, after confirming the order, the user is notified that their order was a success and they are given an order confirmation number.
+
 ![Order Success page](docs/ff4.gif)
 
  It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
