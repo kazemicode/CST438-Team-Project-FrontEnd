@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.cst438Frontend.*;
+import com.example.cst438Frontend.configuration.ConfigPublisher;
 import com.example.cst438Frontend.domain.*;
 
 
@@ -28,12 +28,13 @@ public class OrderService {
 	@Autowired
 	private MenuRepository menuRepository;
 	
+	
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
-	@Autowired
-	private FanoutExchange fanoutOrder;
-	@Autowired
-	private FanoutExchange fanoutDelivery;
+
+	private static String ROUTING_KEY_RESTAURANT = "restaurant.request";
+	private static String ROUTING_KEY_DELIVERY = "delivery.request";
+
 	
 	// Returns order info object
 	public OrderInfo getOrderInfo(long orderId) {
@@ -89,8 +90,9 @@ public class OrderService {
 				"\" \"Total\": \"" + total +
 				"\" \"Payment type\": \"" + "\"}";
 		System.out.println("Sending order to restaurant:" + msg);
-		rabbitTemplate.convertSendAndReceive(fanoutOrder.getName(), "", // No routing key
+		rabbitTemplate.convertSendAndReceive(ConfigPublisher.TOPIC_EXCHANGE_NAME, ROUTING_KEY_RESTAURANT, 
 				msg);
+		
 	}
 	
 	public void requestDelivery(long orderId, String time, String address, long restId) {
@@ -99,7 +101,8 @@ public class OrderService {
 				"\" \"Customer address\": \"" + address +
 				"\" \"Restaurant ID\": \"" + restId + "\"}";
 		System.out.println("Sending order to delivery personnel:" + msg);
-		rabbitTemplate.convertSendAndReceive(fanoutDelivery.getName(), "", msg);
+		rabbitTemplate.convertSendAndReceive(ConfigPublisher.TOPIC_EXCHANGE_NAME, ROUTING_KEY_DELIVERY, 
+				msg);
 	}
 	
 }
