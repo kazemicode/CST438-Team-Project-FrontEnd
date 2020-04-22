@@ -10,6 +10,7 @@ public class LineItemInfo {
 	private double price;
 	private String name;
 	private int qty;
+	private long restId;
 	
 	public LineItemInfo() {
 	
@@ -19,7 +20,8 @@ public class LineItemInfo {
 	public LineItemInfo(MenuItem menuItem, OrderLineItem orderLineItem) {
 		this.name = menuItem.getName();
 		this.price = orderLineItem.getLineItemAmount();
-		this.qty = orderLineItem.getQty();;
+		this.qty = orderLineItem.getQty();
+		this.setRestId(menuItem.getRestId());
 	}
 
 	
@@ -52,5 +54,13 @@ public class LineItemInfo {
 	public String toString() {
 		// Example: Rainbow Roll: $9.99 x 2
 		return name + ": " + "$" + String.format("%.2f", price) + " x" + qty;
+	}
+
+	public long getRestId() {
+		return restId;
+	}
+
+	public void setRestId(long restId) {
+		this.restId = restId;
 	}
 }

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /* For accessing and saving to the order_line_items table in the foodflight schema */
@@ -36,7 +38,7 @@ public class OrderLineItem implements Serializable{
 
 	
 	public OrderLineItem() {
-		this(0, 0, 0, 0);
+		this(0, 0L, 0, 0);
 	}
 
 
@@ -46,6 +48,14 @@ public class OrderLineItem implements Serializable{
 		this.dishId = dishId;
 		this.qty = qty;
 		this.lineItemAmount = lineItemAmount;
+	}
+
+
+	public OrderLineItem(JSONObject oli) {
+		this.orderSequence = oli.getInt("orderSequence");
+		this.qty = oli.getInt("qty");
+		this.dishId = oli.getLong("dishId");
+		this.lineItemAmount = oli.getDouble("price");
 	}
 
 
