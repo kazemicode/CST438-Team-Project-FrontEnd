@@ -14,7 +14,7 @@ In order to set-up the schema, run the [setup script](https://gist.github.com/ka
 
 ![Food Flight Schema ER Diagram](docs/er-diagram.png)
 
-## Application Properties
+### Application Properties
 You will need to configure your application properties in order for the application to function correctly. You can copy and paste the following into your `application.properties` file located in the resources folder of the project (supplying your MySQL server credentials where indicated):
 
 ```#Bing and Zomato API url and keys
@@ -36,10 +36,10 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.hibernate.ddl-auto=update 
 ```
-## Run Front-end application and back-end services
+### Run Front-end application and back-end services
 Run this application as well as the back-end restaurant messaging and delivery person messaging services.
 
-## Usage Limitations
+### Usage Limitations
 Because no restaurants currently expose resources using Zomato's menu item endpoint, we had to generate a (relatively small) set of menu items for a subset of restaurants. Right now, the application is limited to 5 restaurants near **San Diego State University** and 5 restaurants near **CSU Monterey Bay**. Therefore, you must use one of those addresses to get restaurant results that have menu items.
 
 ## Sample Run
