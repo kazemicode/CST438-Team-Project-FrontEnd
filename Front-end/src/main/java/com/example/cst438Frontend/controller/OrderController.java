@@ -223,8 +223,8 @@ public class OrderController {
 		sessionRepository.save(session);
 		customerRepository.save(customer); // save customer, should cascade to saving order/orderlineitems
 		List<LineItemInfo> lineInfos = orderService.getLineItemInfo(order.getOrderLineItems());
-		orderService.requestOrder(order.getId(), order.getOrderDatetime().toString(), customer.getFirstName() + " " + customer.getLastName(), customer.getPhone(), customer.getAddress1(), lineInfos, order.getOrderTotal(), paymentType);
-		orderService.requestDelivery(order.getId(), order.getOrderDatetime().toString(), customer.getAddress1() + " " + customer.getAddress2() + " " +  customer.getCity() + " " + customer.getState() + " " + customer.getZipcode(), lineInfos.get(0).getRestId());
+		orderService.requestOrder(order.getId(), order.getOrderDatetime().toString(), customer.getFirstName() + " " + customer.getLastName(), customer.getPhone(), lineInfos, order.getOrderTotal(), paymentType);
+		orderService.requestDelivery(order.getId(), order.getOrderDatetime().toString(), customer.getFirstName(), customer.getAddress1() + " " + customer.getAddress2() + " " +  customer.getCity() + " " + customer.getState() + " " + customer.getZipcode(), lineInfos.get(0).getRestId());
 		sessionRepository.deleteById(session.getId());
 		model.addAttribute("orderId", order.getId());
 		return "order_success";

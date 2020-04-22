@@ -1,15 +1,15 @@
 
 
 # CST 438 Team Project: Food Flight
-*A web-based application based on Postmates designed and developed by:*
+A web-based application based on Postmates designed and developed by:
 
-*Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)*
+Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)
 
-*Sara Kazemi [@kazemicode](https://github.com/kazemicode/)*
+Sara Kazemi [@kazemicode](https://github.com/kazemicode/)
 
-*Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)*
+Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)
 
-*Cody Young [@codyayoung](https://github.com/codyayoung/)*
+Cody Young [@codyayoung](https://github.com/codyayoung/)
 
 ## Deployment Setup
 ### Schema
@@ -22,7 +22,7 @@ In order to set-up the schema, run the [setup script](https://gist.github.com/ka
 
 ![Food Flight Schema ER Diagram](docs/er-diagram.png)
 
-## Application Properties
+### Application Properties
 You will need to configure your application properties in order for the application to function correctly. You can copy and paste the following into your `application.properties` file located in the resources folder of the project (supplying your MySQL server credentials where indicated):
 
 ```#Bing and Zomato API url and keys
@@ -44,10 +44,10 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.hibernate.ddl-auto=update 
 ```
-## Run Front-end application and back-end services
+### Run Front-end application and back-end services
 Run this application as well as the back-end restaurant messaging and delivery person messaging services.
 
-## Usage Limitations
+### Usage Limitations
 Because no restaurants currently expose resources using Zomato's menu item endpoint, we had to generate a (relatively small) set of menu items for a subset of restaurants. Right now, the application is limited to 5 restaurants near **San Diego State University** and 5 restaurants near **CSU Monterey Bay**. Therefore, you must use one of those addresses to get restaurant results that have menu items.
 
 ## Sample Run
@@ -74,13 +74,13 @@ Finally, after confirming the order, the user is notified that their order was a
 
  It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
  
- ![Order Success page](docs/ff5.gif)
-
+ ![messaging services](docs/ff5.gif)
 
 ### Updated Schema
 Upon checkout, the schema is updated with the order information across the `customers`, `orders`, and `order_line_items` tables:
 
-![Order Success page](docs/ff6.gif)
+![schema](docs/ff6.gif)
+
 
 ## Objectives:
 ### Practice Agile team procedures of iterative development: 
