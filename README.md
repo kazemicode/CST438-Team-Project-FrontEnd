@@ -54,34 +54,31 @@ Because no restaurants currently expose resources using Zomato's menu item endpo
 ### Restaurant Search and Results
 Using the address for San Diego State University, we retrieve nearby restaurants from Zomato's API: 
 
-![Search nearby restaurants](docs/ff1.png)
+![Search nearby restaurants](docs/ff1.gif)
 
-![Restaurant results](docs/ff2.png)
 
 ### Restaurant Menu/Order Page
 Clicking on a desired restaurant will display its menu page, enabling the user to select quantities of items to add to their order:
 
-![Restaurant order page](docs/ff3.png)
+![Restaurant order page](docs/ff2.gif)
 
 ### Order Summary
 Clicking `Submit` on the Order page will display an Order Summary page for the user to review. The user must input their name, phone number, and tip amount before confirming their order. Alternatively, they can return to the beginning, which deletes the current session.
-![Order Summary page](docs/ff4.png)
+![Order Summary page](docs/ff3.gif)
 
 ### Order Confirmation
-Finally, after confirming the order, the user is notified that their order was a success and they are given an order confirmation number. It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
-![Order Success page](docs/ff5.png)
+Finally, after confirming the order, the user is notified that their order was a success and they are given an order confirmation number.
+![Order Success page](docs/ff4.gif)
+
+ It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
+ 
+ ![Order Success page](docs/ff5.gif)
+
 
 ### Updated Schema
 Upon checkout, the schema is updated with the order information across the `customers`, `orders`, and `order_line_items` tables:
 
-#### `Customers`
-![Customer](docs/customer.png)
-
-#### `Orders`
-![Order](docs/order.png)
-
-### `Order_Line_Items`
-![Order Line Items](docs/order_line_items.png)
+![Order Success page](docs/ff6.gif)
 
 ## Objectives:
 ### Practice Agile team procedures of iterative development: 
