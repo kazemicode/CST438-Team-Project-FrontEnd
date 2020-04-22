@@ -1,14 +1,22 @@
 
 
 # CST 438 Team Project: Food Flight
-A web-based application based on Postmates
+*A web-based application based on Postmates designed and developed by:*
+
+*Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)*
+
+*Sara Kazemi [@kazemicode](https://github.com/kazemicode/)*
+
+*Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)*
+
+*Cody Young [@codyayoung](https://github.com/codyayoung/)*
 
 ## Deployment Setup
 ### Schema
 Food Flight utilizes Zomato's REST API in order to retrieve restaurant information near a given geolocation (we use Bing Maps REST API as a middleman to convert addresses to lat/long geolocations). However, because no restaurant seems to utilize Zomato's menu item endpoint, we designed a schema with a table of menu items for select restaurants using the same restaurant_id values as the Zomato API. We also created tables to store a user's order details:
-* Customers :: stores customer contact information
-* Orders :: stores high-level order details
-* OrderLineItems :: stores each line item in the order 
+* `Customers` :: stores customer contact information
+* `Orders` :: stores high-level order details
+* `Order_Line_Items` :: stores each line item in the order 
 
 In order to set-up the schema, run the [setup script](https://gist.github.com/kazemicode/4e6b2fd8ba1835620e99ca721159fc46#file-foodflight-sql) in MySQL Workbench.
 
@@ -62,6 +70,18 @@ Clicking `Submit` on the Order page will display an Order Summary page for the u
 ### Order Confirmation
 Finally, after confirming the order, the user is notified that their order was a success and they are given an order confirmation number. It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
 ![Order Success page](docs/ff5.png)
+
+### Updated Schema
+Upon checkout, the schema is updated with the order information across the `customers`, `orders`, and `order_line_items` tables:
+
+#### `Customers`
+![Customer](docs/customer.png)
+
+#### `Orders`
+![Order](docs/order.png)
+
+### `Order_Line_Items`
+![Order Line Items](docs/order_line_items.png)
 
 ## Objectives:
 ### Practice Agile team procedures of iterative development: 
