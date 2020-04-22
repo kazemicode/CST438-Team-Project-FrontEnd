@@ -1,15 +1,18 @@
 
 
 # CST 438 Team Project: Food Flight
+
 A web-based application based on Postmates designed and developed by:
 
-Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)
 
-Sara Kazemi [@kazemicode](https://github.com/kazemicode/)
+**Ryan Dorrity** ([@rdorrity](https://github.com/rdorrity/))
 
-Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)
+**Sara Kazemi** ([@kazemicode](https://github.com/kazemicode/))
 
-Cody Young [@codyayoung](https://github.com/codyayoung/)
+**Nathan Warren-Acord** ([@nwarcord](https://github.com/nwarcord/))
+
+**Cody Young** ([@codyayoung](https://github.com/codyayoung/))
+
 
 ## Deployment Setup
 ### Schema
@@ -43,36 +46,37 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 #Hibernate
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 spring.jpa.hibernate.ddl-auto=update 
+spring.jpa.hibernate.use-new-id-generator-mappings=false
 ```
 ### Run Front-end application and back-end services
-Run this application as well as the back-end restaurant messaging and delivery person messaging services.
+Run this application as well as the back-end [restaurant messaging](https://github.com/kazemicode/CST438-Team-Project-BackEnd-RestaurantMessaging) and [delivery person messaging](https://github.com/kazemicode/CST438-Team-Project-BackEnd-DeliveryMessaging) services.
 
 ### Usage Limitations
 Because no restaurants currently expose resources using Zomato's menu item endpoint, we had to generate a (relatively small) set of menu items for a subset of restaurants. Right now, the application is limited to 5 restaurants near **San Diego State University** and 5 restaurants near **CSU Monterey Bay**. Therefore, you must use one of those addresses to get restaurant results that have menu items.
 
 ## Sample Run
 ### Restaurant Search and Results
-Using the address for San Diego State University, we retrieve nearby restaurants from Zomato's API: 
+Using the address for **San Diego State University**, we retrieve nearby restaurants from Zomato's API: 
 
-![Search nearby restaurants](docs/ff1.gif)
+ ![Search nearby restaurants](docs/ff1.gif)
 
 
 ### Restaurant Menu/Order Page
 Clicking on a desired restaurant will display its menu page, enabling the user to select quantities of items to add to their order:
 
-![Restaurant order page](docs/ff2.gif)
+ ![Restaurant order page](docs/ff2.gif)
 
 ### Order Summary
 Clicking `Submit` on the Order page will display an Order Summary page for the user to review. The user must input their name, phone number, and tip amount before confirming their order. Alternatively, they can return to the beginning, which deletes the current session.
 
-![Order Summary page](docs/ff3.gif)
+ ![Order Summary page](docs/ff3.gif)
 
 ### Order Confirmation
 Finally, after confirming the order, the user is notified that their order was a success and they are given an order confirmation number.
 
-![Order Success page](docs/ff4.gif)
+ ![Order Success page](docs/ff4.gif)
 
- It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
+It is at this point that their order details are stored to the front-end's database and messages are sent to the messaging microservices for the restaurant and for the delivery person.
  
  ![messaging services](docs/ff5.gif)
 
@@ -94,7 +98,7 @@ Upon checkout, the schema is updated with the order information across the `cust
 ### Use Service Oriented Architecture (SOA) design to implement two back end microservices and a front end
 * The front end will use HTML-JavaScript web pages
 * The front end will use REST to communicate with back end services
-* Microservices use asynchronous communication (RabbitMQ message queues)to communicate with each other
+* Microservices use asynchronous communication (RabbitMQ message queues) to communicate with each other
 
 
 ## Requirements (User stories):
