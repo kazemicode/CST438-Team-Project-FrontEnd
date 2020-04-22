@@ -1,15 +1,15 @@
 
 
 # CST 438 Team Project: Food Flight
-*A web-based application based on Postmates designed and developed by:*
+A web-based application based on Postmates designed and developed by:
 
-*Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)*
+Ryan Dorrity [@rdorrity](https://github.com/rdorrity/)
 
-*Sara Kazemi [@kazemicode](https://github.com/kazemicode/)*
+Sara Kazemi [@kazemicode](https://github.com/kazemicode/)
 
-*Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)*
+Nathan Warren-Acord [@nwarcord](https://github.com/nwarcord/)
 
-*Cody Young [@codyayoung](https://github.com/codyayoung/)*
+Cody Young [@codyayoung](https://github.com/codyayoung/)
 
 ## Deployment Setup
 ### Schema
@@ -80,7 +80,7 @@ Upon checkout, the schema is updated with the order information across the `cust
 #### `Orders`
 ![Order](docs/order.png)
 
-### `Order_Line_Items`
+#### `Order_Line_Items`
 ![Order Line Items](docs/order_line_items.png)
 
 ## Objectives:
